@@ -10,4 +10,8 @@ class MainController extends Controller
     public function index(){
         return view("dashboard.index");
     }
+    public function recruitePage()
+    {
+       return view("dashboard/pages/recruite");
+    }
 }

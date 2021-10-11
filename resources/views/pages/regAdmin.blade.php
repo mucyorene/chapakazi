@@ -1,36 +1,36 @@
 @extends('inc.layouts')
 @section('content')
 
-<br><br><br><br><br><br><br>
+<br><br><br>
 
 <div class="wrapper fadeInDown">
     <div id="formContent">
+        @if (Session('success'))
+        <div class="alert alert-success">
+            {{ $success }}
+        </div>
+        @endif
       <!-- Icon -->
-      <br><br><br>
+      <br><br>
       <!-- Login Form -->
-      <form method="POST" action="{{ route('userAuthentication') }}">
+      <form method="POST" action="{{ route('postAdmin')}}">
           @csrf
-        <input type="text" id="login" class="fadeIn second" name="username" placeholder="Your username" value="{{ old('username')}}"><br>
-            <span class="text-danger">@error('username'){{ $message}} @enderror</span>
-        <input type="password" id="password" class="fadeIn third" name="password" placeholder="Your password"><br>
-        <span class="text-danger">
-            @error('password')
-                {{ $message}}
-            @enderror
-        </span><br>
+        <input type="text" id="login" class="fadeIn second" name="names" placeholder="Your Full Names" value="{{ old('names') }}"><br>
+            <span class="text-danger">@error('names') {{ $message }}@enderror</span>
+        <input type="email" id="login" class="fadeIn second" name="email" placeholder="Your email" value="{{ old('email') }}">
+            <span class="text-danger">@error('email') {{ $message }}@enderror</span>
+        <input type="text" id="password" class="fadeIn third" name="username" placeholder="Your Username" value="{{ old('username') }}">
+            <span class="text-danger">@error('uname') {{ $message }}@enderror</span>
+        <input type="password" id="password" class="fadeIn third" name="password" placeholder="Your password">
         <input type="submit" class="fadeIn fourth" value="Log In">
       </form>
   
       <!-- Remind Passowrd -->
       <div id="formFooter">
-        <a class="underlineHover" href="/registeration">Don't you have an account?</a><br>
-        <a class="underlineHover" href="#">Forgot Password?</a>
+        <a class="underlineHover" href="/authentication">You already have an account?</a><br>
       </div>
     </div>
   </div>
-
-  <br><br><br>
-  <br><br>
   
 <style>
 
@@ -117,7 +117,7 @@
     -ms-transform: scale(0.95);
     transform: scale(0.95);
     }
-    input[type=text], input[type=password]{
+    input[type=text], input[type=phone], input[type=email], input[type=password] {
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;
@@ -137,11 +137,11 @@
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
     }
-    input[type=text]:focus,input[type=password]:focus {
+    input[type=text]:focus,input[type=phone]:focus, input[type=email]:focus, input[type=password]:focus {
     background-color: #fff;
     border-bottom: 2px solid #5fbae9;
     }
-    input[type=text]:placeholder {
+    input[type=text]:placeholder, input[type=phone]:placeholder, input[type=email]:placeholder, input[type=password]:placeholder {
     color: #cccccc;
     }
     /* ANIMATIONS */

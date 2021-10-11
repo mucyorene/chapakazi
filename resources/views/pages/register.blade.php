@@ -14,13 +14,14 @@
             <span class="text-danger">@error('names') {{ $message }}@enderror</span>
         <input type="phone" id="password" class="fadeIn third" name="phone" placeholder="Your Mobile Phone" value="{{ old('phone') }}"><br>
             <span class="text-danger">@error('phone') {{ $message }}@enderror</span>
-        <input type="email" id="login" class="fadeIn second" name="email" placeholder="Your email" value="{{ old('email') }}">
+        <input type="email" id="login" class="fadeIn second" name="email" placeholder="Your email" value="{{ old('email') }}"><br>
             <span class="text-danger">@error('email') {{ $message }}@enderror</span>
-        <input type="text" id="login" class="fadeIn second" name="address" placeholder="Home Address" value="{{ old('address') }}">
+        <input type="text" id="login" class="fadeIn second" name="address" placeholder="Home Address" value="{{ old('address') }}"><br>
             <span class="text-danger">@error('address') {{ $message }}@enderror</span>
-        <input type="text" id="password" class="fadeIn third" name="uname" placeholder="Your Username" value="{{ old('uname') }}">
-            <span class="text-danger">@error('uname') {{ $message }}@enderror</span>
-        <input type="password" id="password" class="fadeIn third" name="password" placeholder="Your password">
+        <input type="text" id="password" class="fadeIn third" name="username" placeholder="Your Username" value="{{ old('username') }}"><br>
+            <span class="text-danger">@error('username') {{ $message }}@enderror</span>
+        <input type="password" id="password" class="fadeIn third" name="password" placeholder="Your password"><br>
+            <span class="text-danger">@error('password') {{ $message }}@enderror</span><br>
         <input type="submit" class="fadeIn fourth" value="Log In">
       </form>
   

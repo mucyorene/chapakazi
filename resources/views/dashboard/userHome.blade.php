@@ -1,4 +1,5 @@
-@extends('dashboard.inc.main')
+@extends('dashboard.inc.main1')
+@section('title','User Dashboard');
 @section('content')
     <!-- Main Content -->
     <div class="main-content">
@@ -94,8 +95,7 @@
               </div>
             </div>
           </div>
-
-          {{-- <div class="row">
+          <div class="row">
             <div class="col-12 col-sm-12 col-lg-12">
               <div class="card ">
                 <div class="card-header">
@@ -181,9 +181,8 @@
                 </div>
               </div>
             </div>
-          </div> --}}
-
-          {{-- <div class="row">
+          </div>
+          <div class="row">
             <div class="col-12 col-sm-12 col-lg-4">
               <div class="card">
                 <div class="card-header">
@@ -220,8 +219,7 @@
                 </div>
               </div>
             </div>
-          </div> --}}
-
+          </div>
           <div class="row">
             <div class="col-12">
               <div class="card">
@@ -473,7 +471,7 @@
               </div>
             </div>
           </div>
-          {{-- <div class="row">
+          <div class="row">
             <div class="col-md-6 col-lg-12 col-xl-6">
               <!-- Support tickets -->
               <div class="card">
@@ -621,7 +619,7 @@
                 </div>
               </div>
             </div>
-          </div> --}}
+          </div>
         </section>
         <div class="settingSidebar">
           <a href="javascript:void(0)" class="settingPanelToggle"> <i class="fa fa-spin fa-cog"></i>

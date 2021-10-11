@@ -20,11 +20,11 @@
     <div id="app">
     <div class="main-wrapper main-wrapper-1">
     <div class="navbar-bg"></div>
-    @include('dashboard.inc.nav')
+    @include('dashboard.inc.nav1')
     @yield('content')
     <footer class="main-footer">
       <div class="footer-left">
-        <a href="">Chapakazi</a></a>
+        <a href="">chapakazi.com</a></a>
       </div>
       <div class="footer-right">
       </div>
