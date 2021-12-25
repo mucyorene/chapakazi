@@ -1,4 +1,6 @@
-
+<?php
+    use App\Http\Controllers\web\HomeController;
+?>
 <header>
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="navigation">
@@ -18,11 +20,18 @@
             <div class="navbar-collapse collapse">
             <div class="menu">
                 <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation"><a id="home" href="/">Home</a></li>
-                <li role="presentation"><a href="/about" id="about">About Us</a></li>
-                <li role="presentation"><a id="services" href="/services">Services</a></li>
-                <li role="presentation"><a id="contact" href="/contact">Contact</a></li>
-                <li role="presentation"><a id="login" href="/authentication">Login</a></li>
+                    <li role="presentation"><a id="home" href="/">Home</a></li>
+                    <li role="presentation"><a href="/about" id="about">About Us</a></li>
+                    <li role="presentation"><a id="services" href="/services">Services</a></li>
+                    <li role="presentation"><a id="contact" href="/contact">Contact</a></li>  
+                    @if (Auth::guard('webemployers')->id() > 0)
+                        <li role="presentation"><a id="login" href="/savedList">My List<span style="color:red;">&nbsp {{HomeController::displayNumber()}}</span></a></li>
+                        <li role="presentation"><a id="login" href="/user/dash">Your dashboard</a></li>
+                    @else
+                        <li role="presentation"><a id="login" href="/authentication">Login</a></li>
+                    @endif              
+                    
+                    {{-- <li role="presentation"><a href="{{ route('recruites') }}">List &nbsp;<span class="text-danger">{{ session()->has('empList') ? session()->get('empList')->totalEmployee : ''}}</span></a></li> --}}
                 </ul>
             </div>
             </div>

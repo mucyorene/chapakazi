@@ -11,8 +11,16 @@
         </div>
     </div>
 
-    <div class="map">
-        <div id="google-map" data-latitude="40.713732" data-longitude="-74.0092704"></div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="map">
+                <div id="google-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d255203.60499289932!2d29.98715762647151!3d-1.9294216813096794!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca4258ed8e797%3A0x32fbb533d31f0834!2sKigali%20City%2C%20Kigali!5e0!3m2!1sen!2srw!4v1640168983518!5m2!1sen!2srw" width="1200" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
     </div>
 
     <section id="contact-page">

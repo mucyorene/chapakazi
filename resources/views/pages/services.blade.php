@@ -12,7 +12,7 @@
 
     <div class="services">
         <div class="container">
-        <h3>Company Services</h3>
+        <h3>Chapakazi Services</h3>
         <hr>
         <div class="col-md-6">
             <img src="images/4.jpg" class="img-responsive">
@@ -28,7 +28,7 @@
                     <i class="fa fa-pencil"></i>
                 </div>
                 <div class="media-body">
-                    <h4 class="media-heading">Web Development</h4>
+                    <h4 class="media-heading">Best Employee</h4>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum erat libero, pulvinar tincidunt leo consectetur eget.</p>
                 </div>
                 </li>
@@ -37,7 +37,7 @@
                     <i class="fa fa-book"></i>
                 </div>
                 <div class="media-body">
-                    <h4 class="media-heading">Responsive Design</h4>
+                    <h4 class="media-heading">Publish them</h4>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum erat libero, pulvinar tincidunt leo consectetur eget.</p>
                 </div>
                 </li>
@@ -46,7 +46,7 @@
                     <i class="fa fa-rocket"></i>
                 </div>
                 <div class="media-body">
-                    <h4 class="media-heading">Bootstrap Themes</h4>
+                    <h4 class="media-heading">Directing them at Right Employers</h4>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum erat libero, pulvinar tincidunt leo consectetur eget.</p>
                 </div>
                 </li>
@@ -66,7 +66,7 @@
                     <i class="fa fa-pencil"></i>
                 </div>
                 <div class="media-body">
-                    <h4 class="media-heading">Landing Page</h4>
+                    <h4 class="media-heading">Finding casuals</h4>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum erat libero, pulvinar tincidunt leo consectetur eget.</p>
                 </div>
                 </li>
@@ -75,7 +75,7 @@
                     <i class="fa fa-book"></i>
                 </div>
                 <div class="media-body">
-                    <h4 class="media-heading">Training</h4>
+                    <h4 class="media-heading">Chacking their background</h4>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum erat libero, pulvinar tincidunt leo consectetur eget.</p>
                 </div>
                 </li>
@@ -84,7 +84,7 @@
                     <i class="fa fa-rocket"></i>
                 </div>
                 <div class="media-body">
-                    <h4 class="media-heading">Logo Design</h4>
+                    <h4 class="media-heading">Posting them</h4>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum erat libero, pulvinar tincidunt leo consectetur eget.</p>
                 </div>
                 </li>

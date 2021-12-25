@@ -152,20 +152,19 @@
 <div class="main-sidebar sidebar-style-2">
   <aside id="sidebar-wrapper">
     <div class="sidebar-brand">
-      <a href=""> <img alt="image" src="{{ asset('dashboard/assets/img/logo.png')}}" class="header-logo" /> <span
-          class="logo-name">Chapakazi</span>
+      <a href=""><span class="logo-name text-success">Chapakazi</span>
       </a>
     </div>
     <ul class="sidebar-menu">
       <li class="menu-header">Main</li>
       <li class="dropdown active">
-        <a href="" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
+        <a href="{{ route('admin.index') }}" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
       </li>
       <li class="dropdown">
         <a href="#" class="menu-toggle nav-link has-dropdown"><i
             data-feather="briefcase"></i><span>Employees</span></a>
         <ul class="dropdown-menu">
-          <li><a class="nav-link" href="/recruitedEmployee">Recruited</a></li>
+          <li><a class="nav-link" id="recruites" href="/recruitedEmployee">Recruited</a></li>
           <li><a class="nav-link" href="widget-data.html">All Employee</a></li>
         </ul>
       </li>
@@ -190,25 +189,10 @@
       <li class="dropdown">
         <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="copy"></i><span>Employers</span></a>
         <ul class="dropdown-menu">
-          <li><a class="nav-link" href="alert.html">Alert</a></li>
-          <li><a class="nav-link" href="badge.html">Badge</a></li>
-          <li><a class="nav-link" href="breadcrumb.html">Breadcrumb</a></li>
-          <li><a class="nav-link" href="buttons.html">Buttons</a></li>
-          <li><a class="nav-link" href="collapse.html">Collapse</a></li>
-          <li><a class="nav-link" href="dropdown.html">Dropdown</a></li>
-          <li><a class="nav-link" href="checkbox-and-radio.html">Checkbox &amp; Radios</a></li>
-          <li><a class="nav-link" href="list-group.html">List Group</a></li>
-          <li><a class="nav-link" href="media-object.html">Media Object</a></li>
-          <li><a class="nav-link" href="navbar.html">Navbar</a></li>
-          <li><a class="nav-link" href="pagination.html">Pagination</a></li>
-          <li><a class="nav-link" href="popover.html">Popover</a></li>
-          <li><a class="nav-link" href="progress.html">Progress</a></li>
-          <li><a class="nav-link" href="tooltip.html">Tooltip</a></li>
-          <li><a class="nav-link" href="flags.html">Flag</a></li>
-          <li><a class="nav-link" href="typography.html">Typography</a></li>
+          <li><a class="nav-link" href="#">All</a></li>
         </ul>
       </li>
-      <li class="dropdown">
+      {{-- <li class="dropdown">
         <a href="#" class="menu-toggle nav-link has-dropdown"><i
             data-feather="shopping-bag"></i><span>Advanced</span></a>
         <ul class="dropdown-menu">
@@ -222,8 +206,8 @@
           <li><a class="nav-link" href="pricing.html">Pricing</a></li>
           <li><a class="nav-link" href="tabs.html">Tab</a></li>
         </ul>
-      </li>
-      <li><a class="nav-link" href="blank.html"><i data-feather="file"></i><span>Blank Page</span></a></li>
+      </li> --}}
+      {{-- <li><a class="nav-link" href="blank.html"><i data-feather="file"></i><span>Blank Page</span></a></li>
       <li class="menu-header">Chapakazi</li>
       <li class="dropdown">
         <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="layout"></i><span>Forms</span></a>
@@ -234,7 +218,7 @@
           <li><a class="nav-link" href="forms-validation.html">Validation</a></li>
           <li><a class="nav-link" href="form-wizard.html">Form Wizard</a></li>
         </ul>
-      </li>
+      </li> --}}
       {{-- <li class="dropdown">
         <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="grid"></i><span>Tables</span></a>
         <ul class="dropdown-menu">
