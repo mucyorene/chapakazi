@@ -5,6 +5,7 @@ namespace App\Http\Controllers\dashboard;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\employees;
+use App\Models\Employers;
 
 class MainController extends Controller
 {
@@ -12,11 +13,26 @@ class MainController extends Controller
         
         return view("dashboard.index");
     }
+    public function systemCasuals(){
+
+        $data = employees::where('status','=','1')->latest()->get();
+        return view('dashboard/pages/recruitedEmployees',compact('data'));
+        // foreach ($allCasuals as $value) {
+        //    echo $value->firstName;
+        // }
+    }
+
+    public function systemEmployers(){
+        $data = Employers::latest()->get();
+        return view('dashboard/pages/adminEmployers',compact('data'));
+    }
+
     public function recruitePage()
     {
         $data = employees::all();
         return view("dashboard/pages/recruite")->with('data', $data);
     }
+    
     public function registerEmp()
     {
        return view("dashboard/pages/registerEmployee");
@@ -62,9 +78,20 @@ class MainController extends Controller
 
         return response()->json(['success'=>'Employee Added successfully']);
     }
+
     public function removeEmployee($id){
         $id = employees::find($id);
         $id->delete();
         return back()->with('success', 'Employee removed successfully');
-    }  
+    }
+
+    public function deleteEmployer($id){
+        $toDelete = Employers::find($id);
+        $toDelete->delete();
+        return response()->json('Deletion Success');
+    }
+    public function deleteAllEmployers(){
+        $deleteEmployers = Employers::truncate();
+        return response()->json('Removed successfully');
+    }
 }

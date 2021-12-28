@@ -157,15 +157,17 @@
     </div>
     <ul class="sidebar-menu">
       <li class="menu-header">Main</li>
-      <li class="dropdown active">
+      <li class="dropdown" id="dashboardAdmin">
         <a href="{{ route('admin.index') }}" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
       </li>
-      <li class="dropdown">
+      <li class="dropdown" id="employeeAdmin">
         <a href="#" class="menu-toggle nav-link has-dropdown"><i
             data-feather="briefcase"></i><span>Employees</span></a>
         <ul class="dropdown-menu">
-          <li><a class="nav-link" id="recruites" href="/recruitedEmployee">Recruited</a></li>
-          <li><a class="nav-link" href="widget-data.html">All Employee</a></li>
+
+          <li id="employeeAdmin2"><a class="nav-link" href="/dash/allCasual">Recruited</a></li>
+          <li id="employeeAdmin1"><a class="nav-link" id="recruites" href="/recruitedEmployee">All Employees</a></li>
+          
         </ul>
       </li>
       {{-- <li class="dropdown">
@@ -186,10 +188,10 @@
         </ul>
       </li> --}}
       <li class="menu-header">Employers</li>
-      <li class="dropdown">
+      <li class="dropdown" id="employers">
         <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="copy"></i><span>Employers</span></a>
         <ul class="dropdown-menu">
-          <li><a class="nav-link" href="#">All</a></li>
+          <li><a class="nav-link" href="/allEmployers">All</a></li>
         </ul>
       </li>
       {{-- <li class="dropdown">

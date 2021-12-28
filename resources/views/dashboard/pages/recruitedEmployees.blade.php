@@ -9,11 +9,8 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <div class="col-md-10">
+              <div class="col-md-12">
                     <h4>Employee</h4>
-              </div>
-              <div class="col-md-2">
-                <button id="registerEmployee" class="btn btn-info btn-sm btn-flat" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add New</button>
               </div>
             </div>
             <div class="card-body">
@@ -51,7 +48,7 @@
                       <td>{{ $employee->littleBiography }}</td>
                       <td>{{ $employee->status }}</td>
                       <td class="avatar avatar mr-2 avatar-xl bg-white">
-                          <img class="img img-fluid" src="profiles/{{$employee->profile}}" alt="No profile">
+                          <img class="img img-fluid" src="{{ asset('profiles/'.$employee->profile)}}" alt="No profile">
                           <i class="avatar-presence online"></i>
                       </td>
                       <td>{{ $employee->email }}</td>
@@ -246,55 +243,12 @@
   </div>
 </div>
 
-<script>
-
-  $(document).ready(function(){
-    $("#feedbacks").hide()
-    $("#formSubmit").on("submit",function(e){
-      e.preventDefault();
-      $.ajax({
-        method:'POST',
-        url:this.action,
-        data: new FormData(this),
-        processData: false,
-        dataType: 'json',
-        contentType:false,
-        cache:false,
-
-        beforeSend:function () {
-          $("#employeeSaving").text("Saving");
-        },
-        success: function(response){
-
-          console.log(response.success)
-          $("#employeeSaving").text("Save");
-          $("#formSubmit").trigger('reset');
-          $("#feedbacks").show()
-          $("#feedbacks").addClass("alert alert-success")
-          $("#feedbacks").html(response.success)
-
-        },error: function(error){
-          console.log(error)
-          $("#employeeSaving").text("Save");
-          $("#feedbacks").show()
-          $("#feedbacks").addClass("alert alert-danger")
-
-          
-          // $(".toBe").hide();
-          // $("#exampleModalLabel2").html("Can't save data, check inputs like email or unfilled");
-          // $("#exampleModalLabel2").show();
-        }
-      });
-    });
-  });
-</script>
-
   
 <script src="{{ asset('js/jquery.js') }}"></script>
 <script type="text/javascript">
   $(function(){
     $("#employeeAdmin").addClass('active');
-    $("#employeeAdmin1").addClass('active');
+    $("#employeeAdmin2").addClass('active');
   });
 </script>
 

@@ -1,11 +1,14 @@
-@extends('dashboard.inc.main')
+@extends('dashboard.inc.main1')
 @section('content')
-<meta name="csrf-token" content="{{ csrf_token() }}" />
 <!-- Main Content -->
 <div class="main-content">
   <section class="section">
     <div class="section-body">
       <div class="row">
+          
+        <div class="col-12">
+            <div class="responseDelete"></div>
+        </div>
         <div class="col-12">
           <div class="card">
             <div class="card-header">
@@ -13,7 +16,7 @@
                     <h4>Employee</h4>
               </div>
               <div class="col-md-2">
-                <button id="registerEmployee" class="btn btn-info btn-sm btn-flat" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add New</button>
+                <button id="removeAllEmployee" class="btn btn-danger btn-sm btn-flat">Remove all</button>
               </div>
             </div>
             <div class="card-body">
@@ -29,7 +32,7 @@
                   <thead>
                     <tr>
                       <th>Names</th>
-                      <th>IDNumber</th>
+                      {{-- <th>IDNumber</th> --}}
                       <th>Profession</th>
                       <th>Availability</th>
                       <th>Rate Per Day</th>
@@ -43,18 +46,18 @@
                   <tbody>
                     @foreach ($data as $employee)
                     <tr>
-                      <td>{{ $employee->firstName }} {{$employee->lastName}}</td>
-                      <td>{{ $employee->identificationNumber }}</td>
-                      <td>{{ $employee->profession }}</td>
-                      <td>{{ $employee->availability }}</td>
-                      <td>{{ $employee->ratePerDay }}</td>
-                      <td>{{ $employee->littleBiography }}</td>
-                      <td>{{ $employee->status }}</td>
+                      <td>{{ $employee->hiredEmployee->firstName }} {{$employee->hiredEmployee->lastName}}</td>
+                      {{-- <td>{{ $employee->hiredEmployee->identificationNumber }}</td> --}}
+                      <td>{{ $employee->hiredEmployee->profession }}</td>
+                      <td>{{ $employee->hiredEmployee->availability }}</td>
+                      <td>{{ $employee->hiredEmployee->ratePerDay }}</td>
+                      <td>{{ $employee->hiredEmployee->littleBiography }}</td>
+                      <td>{{ $employee->hiredEmployee->status }}</td>
                       <td class="avatar avatar mr-2 avatar-xl bg-white">
-                          <img class="img img-fluid" src="profiles/{{$employee->profile}}" alt="No profile">
+                          <img class="img img-fluid" src="profiles/{{$employee->hiredEmployee->profile}}" alt="No profile">
                           <i class="avatar-presence online"></i>
                       </td>
-                      <td>{{ $employee->email }}</td>
+                      <td>{{ $employee->hiredEmployee->email }}</td>
                       <td>
                         
                         <div class="dropdown d-inline">
@@ -63,9 +66,8 @@
                             Choose
                           </button>
                           <div class="dropdown-menu">
-                            <a class="dropdown-item has-icon" href="#"><i class="fas fa-th"></i>View</a>
-                            <a class="dropdown-item has-icon text-success" href="#"><i class="far fa-edit"></i>Edit</a>
-                            <a class="dropdown-item has-icon text-danger" onclick="deleteEmployee('{{ $employee->id }}','{{ $employee->firstName }}','{{$employee->lastName}}')" id="delEmployee" href="#"><i class="fas fa-trash"></i> Delete</a>                           
+                            {{-- <a class="dropdown-item has-icon" href="#"><i class="fas fa-th"></i>View</a> --}}
+                            <a class="dropdown-item has-icon text-danger" value="{{$employee->hiredEmployee->id}}" class="removeE" id="removeEmployee" href="{{$employee->hiredEmployee->id}}"><i class="fas fa-trash"></i>Remove</a>                           
                           </div>
                         </div>
 
@@ -84,6 +86,38 @@
 </div>
 
 <script src="{{ asset('js/jquery.js') }}"></script>
+
+
+<script>
+    $(function(){
+       $("#removeEmployee").click(function(e){
+            e.preventDefault();
+            let ids = $(this).attr('href')
+            $.ajax({
+                url:'/removeCasual/'+ids,
+                success:function(response){
+                    $(".responseDelete").text("Successfully removed employees");
+                    $(".responseDelete").addClass('alert alert-danger text-center')
+                },
+                error:function(error){
+                    console.log(error)
+                }
+            })
+       })
+       $("#removeAllEmployee").click(function(e){
+        e.preventDefault();
+           $.ajax({
+              url:'/removeMyAllCasuals',
+              success:function(){
+                $(".responseDelete").text("You removed all employees")
+                $(".responseDelete").addClass('alert alert-danger text-center')
+              }
+           });
+       })
+    });
+</script>
+
+
 
 <script>
   function deleteEmployee(id,firstName,lastName){
@@ -248,54 +282,53 @@
 
 <script>
 
-  $(document).ready(function(){
-    $("#feedbacks").hide()
-    $("#formSubmit").on("submit",function(e){
-      e.preventDefault();
-      $.ajax({
-        method:'POST',
-        url:this.action,
-        data: new FormData(this),
-        processData: false,
-        dataType: 'json',
-        contentType:false,
-        cache:false,
+//   $(document).ready(function(){
+//     $("#feedbacks").hide()
+//     $("#formSubmit").on("submit",function(e){
+//       e.preventDefault();
+//       $.ajax({
+//         method:'POST',
+//         url:this.action,
+//         data: new FormData(this),
+//         processData: false,
+//         dataType: 'json',
+//         contentType:false,
+//         cache:false,
 
-        beforeSend:function () {
-          $("#employeeSaving").text("Saving");
-        },
-        success: function(response){
+//         beforeSend:function () {
+//           $("#employeeSaving").text("Saving");
+//         },
+//         success: function(response){
 
-          console.log(response.success)
-          $("#employeeSaving").text("Save");
-          $("#formSubmit").trigger('reset');
-          $("#feedbacks").show()
-          $("#feedbacks").addClass("alert alert-success")
-          $("#feedbacks").html(response.success)
+//           console.log(response.success)
+//           $("#employeeSaving").text("Save");
+//           $("#formSubmit").trigger('reset');
+//           $("#feedbacks").show()
+//           $("#feedbacks").addClass("alert alert-success")
+//           $("#feedbacks").html(response.success)
 
-        },error: function(error){
-          console.log(error)
-          $("#employeeSaving").text("Save");
-          $("#feedbacks").show()
-          $("#feedbacks").addClass("alert alert-danger")
+//         },error: function(error){
+//           console.log(error)
+//           $("#employeeSaving").text("Save");
+//           $("#feedbacks").show()
+//           $("#feedbacks").addClass("alert alert-danger")
 
           
-          // $(".toBe").hide();
-          // $("#exampleModalLabel2").html("Can't save data, check inputs like email or unfilled");
-          // $("#exampleModalLabel2").show();
-        }
-      });
-    });
-  });
+//           // $(".toBe").hide();
+//           // $("#exampleModalLabel2").html("Can't save data, check inputs like email or unfilled");
+//           // $("#exampleModalLabel2").show();
+//         }
+//       });
+//     });
+//   });
 </script>
 
-  
-<script src="{{ asset('js/jquery.js') }}"></script>
-<script type="text/javascript">
+<script>
   $(function(){
-    $("#employeeAdmin").addClass('active');
-    $("#employeeAdmin1").addClass('active');
+      $("#employeesTabs").addClass('active');
+      $("#employeesTabs1").addClass('active');
   });
 </script>
 
 @endsection
+      

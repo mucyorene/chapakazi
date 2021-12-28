@@ -5,7 +5,7 @@
         <li><a href="#" class="nav-link nav-link-lg fullscreen-btn">
             <i data-feather="maximize"></i>
           </a></li>
-        <li>
+        {{-- <li>
           <form class="form-inline mr-auto">
             <div class="search-element">
               <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="200">
@@ -14,11 +14,11 @@
               </button>
             </div>
           </form>
-        </li>
+        </li> --}}
       </ul>
     </div>
     <ul class="navbar-nav navbar-right">
-      <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
+      {{-- <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
           class="nav-link nav-link-lg message-toggle"><i data-feather="mail"></i>
           <span class="badge headerBadge1">
             6 </span> </a>
@@ -78,8 +78,8 @@
             <a href="#">View All <i class="fas fa-chevron-right"></i></a>
           </div>
         </div>
-      </li>
-      <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
+      </li> --}}
+      {{-- <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
           class="nav-link notification-toggle nav-link-lg"><i data-feather="bell" class="bell"></i>
         </a>
         <div class="dropdown-menu dropdown-list dropdown-menu-right pullDown">
@@ -126,19 +126,21 @@
             <a href="#">View All <i class="fas fa-chevron-right"></i></a>
           </div>
         </div>
-      </li>
+      </li> --}}
       <li class="dropdown"><a href="#" data-toggle="dropdown"
-          class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="{{ asset('dashboard/assets/img/user.png') }}"
+          class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="{{ asset('dashboard/assets/img/users/avatar.png') }}"
             class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
         <div class="dropdown-menu dropdown-menu-right pullDown">
-          <div class="dropdown-title">Hello Sarah Smith</div>
-          <a href="profile.html" class="dropdown-item has-icon"> <i class="far
+          <div class="dropdown-title">{{ Auth::guard('webemployers')->user()->fullNames }}</div>
+          <a href="/userProfiles/{{ Auth::guard('webemployers')->id() }}" class="dropdown-item has-icon"> <i class="far
                                     fa-user"></i> Profile
-          </a> <a href="timeline.html" class="dropdown-item has-icon"> <i class="fas fa-bolt"></i>
-            Activities
-          </a> <a href="#" class="dropdown-item has-icon"> <i class="fas fa-cog"></i>
-            Settings
           </a>
+          {{-- <a href="timeline.html" class="dropdown-item has-icon"> <i class="fas fa-bolt"></i>
+            Activities
+          </a>
+          <a href="#" class="dropdown-item has-icon"> <i class="fas fa-cog"></i>
+            Settings
+          </a> --}}
           <div class="dropdown-divider"></div>
           <a href="/sessionDestroyed" class="dropdown-item has-icon text-danger"> <i class="fas fa-sign-out-alt"></i>
             Logout
@@ -150,20 +152,19 @@
 <div class="main-sidebar sidebar-style-2">
   <aside id="sidebar-wrapper">
     <div class="sidebar-brand">
-      <a href="/"> <span class="logo-name text-success">Chapakazi</span>
+      <a href="/user/dash"> <span class="logo-name text-success">Chapakazi</span>
       </a>
     </div>
     <ul class="sidebar-menu">
       <li class="menu-header">Main</li>
-      <li class="dropdown active">
-        <a href="/" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
+      <li class="dropdown"  id="dashboardUser">
+        <a href="/user/dash" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
       </li>
-      <li class="dropdown">
+      <li class="dropdown" id="employeesTabs">
         <a href="#" class="menu-toggle nav-link has-dropdown"><i
             data-feather="briefcase"></i><span>Employees</span></a>
         <ul class="dropdown-menu">
-          <li><a class="nav-link" href="#">My casual request</a></li>
-          <li><a class="nav-link" href="#">My casuals</a></li>
+          <li  id="employeesTabs1"><a class="nav-link" href="/employerOwns">My casuals</a></li>
         </ul>
       </li>
       <li class="dropdown">

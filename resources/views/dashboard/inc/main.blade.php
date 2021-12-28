@@ -17,6 +17,12 @@
   <!-- Custom style CSS -->
   <link rel="stylesheet" href="{{ asset('dashboard/assets/css/custom.css')}}">
   <link rel='shortcut icon' type='image/x-icon' href='{{ asset('dashboard/assets/img/favicon.ico')}}' />
+  
+
+  
+  <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
+  <script src="{{ asset("bootstrap/js/bootstrap.js") }}"></script>
+
 </head>
 <body>
 

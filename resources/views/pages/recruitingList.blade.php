@@ -98,7 +98,7 @@
     function makePayment(values) {
         //alert(values);
       FlutterwaveCheckout({
-        public_key: "FLWPUBK_TEST-SANDBOXDEMOKEY-X",
+        public_key: "FLWPUBK_TEST-a17b1b49dbd7c122031a5e851acf247d-X",
         tx_ref: "RX1",
         amount: values,
         currency: "RWF",
@@ -112,8 +112,8 @@
         },
         customer: {
           email: "{{ Auth::guard('webemployers')->user()->email}}",
-          phone_number: "08102909304",
-          name: "Flutterwave Developers",
+          phone_number: "{{ Auth::guard('webemployers')->user()->phone }}",
+          name: "{{ Auth::guard('webemployers')->user()->fullNames}}",
         },
         callback: function (data) {
           console.log(data);

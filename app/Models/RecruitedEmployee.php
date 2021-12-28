@@ -9,7 +9,7 @@ class RecruitedEmployee extends Model
 {
     use HasFactory;
 
-    public function employee(){
+    public function hiredEmployee(){
         return $this->belongsTo(employees::class, 'employeeId');
     }
 }

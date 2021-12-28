@@ -92,4 +92,14 @@
         </div>
         </div>
     </div>
+    
+    
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script type="text/javascript">
+      $(function(){
+        $("#dashboardAdmin").addClass('active');
+      });
+    </script>
+
+
 @endsection

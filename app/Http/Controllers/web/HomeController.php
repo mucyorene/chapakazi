@@ -47,6 +47,53 @@ class HomeController extends Controller
     public function registerAdmin(){
         return view("pages/regAdmin");
     }
+
+    public function showCasual($id){
+        $casual = employees::find($id);
+        return view('pages/view',compact('casual'));
+    }
+
+    public function employerProfile($id){
+        $real = Employers::find($id);
+        return view('dashboard/pages/userProfile',compact('real'));
+    }
+
+    public function myCasuals(){                  
+        $data = Auth::guard('webemployers')->user()->recruitedEmployees()->with(['hiredEmployee'])->get();
+
+        return view('dashboard/pages/employerCasuals',compact('data'));
+
+        // foreach ($employersLists as $values) {
+        //    echo $values->hiredEmployee->firstName;
+        // }
+    }
+
+    public function removeMyCasual($id){
+
+        $update = Auth::guard('webemployers')->user()->recruitedEmployees()->with('hiredEmployee')->get();
+
+        $updating = employees::where('id','=',$id)->update(['status'=>'0']);
+
+        $toDelete = RecruitedEmployee::where('employerId','=',Auth::guard('webemployers')->id())
+                                    ->where('employeeId','=',$id)
+                                    ->delete();
+
+        if ($toDelete) {
+            return response()->json(['success'=>'Successfully removed from your employees']);
+            //return redirect('/employerOwns');
+        }
+
+        // foreach ($update as $value) {
+        //     echo $value->hiredEmployee->lastName."</br>";
+        // }
+    }
+
+    public function removeAllCasuals(){
+        $deleteEmployees =RecruitedEmployee::where('employerId','=',Auth::guard('webemployers')->id())
+                                        ->delete();
+        return response()->json('Successfully removed employees');
+    }
+
     public function postAdmin(Request $request){
 
         $request->validate([
@@ -148,13 +195,13 @@ class HomeController extends Controller
     }
 
     public function mySavedList(){
+
         $employersList = Auth::guard('webemployers')->user()->employees()->with(['employee'])->get();
-
-
         $totalNumber = count($employersList);
-        // foreach ($employersList as $value) {
-        //     echo $value->employee->firstName."</br>";
-        // }
+
+
+        //return Auth::guard('webemployers')->user()->fullNames;
+
         return view('pages.recruitingList',compact('employersList','totalNumber'));
 
         // $myList = recruiteList::find($employersList)->cart('lastName');
@@ -173,7 +220,9 @@ class HomeController extends Controller
     }
 
     public function userDashView(){
-        return view("dashboard.userHome");
+        $myEmployees = Auth::guard('webemployers')->user()->recruitedEmployees()->with(['hiredEmployee'])->get();
+        $totalNumber = count($myEmployees);
+        return view("dashboard.userHome",compact('totalNumber','myEmployees'));
     }
 
     public function logout()

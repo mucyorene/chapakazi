@@ -5,6 +5,7 @@ use App\Http\Controllers\web;
 use App\Http\Controllers\web\HomeController;
 use App\Http\Controllers\dashboard\MainController;
 use App\Models\Employers;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,8 +28,48 @@ Route::get('/about',[HomeController::class,'about']);
 Route::get('/services',[HomeController::class,'services']);
 Route::get('/contact',[HomeController::class, 'contact']);
 Route::get('/adminRegisteration',[HomeController::class,'registerAdmin']);
+Route::get('/viewCasual/{id}',[HomeController::class,'showCasual']);
 
 Route::post('/postAdmin',[HomeController::class,'postAdmin'])->name("postAdmin");
+
+
+
+
+//Socialite
+
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('github')->redirect();
+});
+
+Route::get('/auth/callback', function () {
+    $user = Socialite::driver('github')->user();
+    // $user->token
+});
+
+//Facebook
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('facebook')->redirect();
+});
+
+Route::get('/auth/callback', function () {
+    $user = Socialite::driver('facebook')->user();
+    // $user->token
+});
+
+
+//Facebook
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('google')->redirect();
+});
+
+Route::get('/auth/callback', function () {
+    $user = Socialite::driver('google')->user();
+    // $user->token
+});
+
+
+
+
 //Athentication Routes
 
 Route::get('/authentication',[HomeController::class,'authentication'])->name("loginAgain");
@@ -37,19 +78,42 @@ Route::get('/registeration',[HomeController::class,'userRegister']);
 Route::post('auth1',[HomeController::class, 'handleLogin'])->name('userAuthentication');
 Route::get('/logout',[HomeController::class, 'logout'])->name('loggingOut');
 Route::get('/sessionDestroyed',[HomeController::class, 'logout2'])->name('loggingOut');
+
+
+
 // Employers Routes
 Route::get('/user/dash',[HomeController::class,'userDashView'])->middleware('auth:webemployers');
+Route::get('/employerOwns', [HomeController::class,'myCasuals'])->middleware('auth:webemployers');
+Route::get('/removeCasual/{id}',[HomeController::class, 'removeMyCasual'])->middleware('auth:webemployers');
+Route::get('/removeMyAllCasuals',[HomeController::class,'removeAllCasuals'])->middleware('auth:webemployers');
+Route::get('/userProfiles/{id}',[HomeController::class, 'employerProfile'])->middleware('auth:webemployers');
+
 
 //Admin Routes
 
 // WEB POST ROUTES
 Route::post('/registerUser',[HomeController::class,'saveUser'])->name('userSaving');
+
 //Dashboard Routes
 Route::get('/dash/admin',[MainController::class,'index'])->name("admin.index")->middleware('auth:webadmins');
+
+Route::get('/dash/allCasual',[MainController::class,'systemCasuals'])->name("admin.casual")->middleware('auth:webadmins');
+
+Route::get('/allEmployers',[MainController::class,'systemEmployers'])->name("admin.employers")->middleware('auth:webadmins');
+//Remove employer /admin
+Route::get('/removeEmployer/{id}',[MainController::class,'deleteEmployer'])->name("admin.deleteEmp")->middleware('auth:webadmins');
+//Remove all Employers
+Route::get('/removeMyAllEmployers',[HomeController::class,'deleteAllEmployers'])->name("admin.deleteEmpAll")->middleware('auth:webadmins');
+
 Route::get('/removeEmployee/{id}',[MainController::class,'removeEmployee'])->name("deleteEmployee.id")->middleware('auth:webadmins');
 Route::get('/recruitedEmployee',[MainController::class, 'recruitePage'])->middleware("auth:webadmins");
 Route::get('/emp/reg',[MainController::class, 'registerEmp'])->name("admin.addRegister")->middleware("auth:webadmins");
 Route::post('/postEmployee',[MainController::class, 'saveEmployee'])->name("admin.postEmployees")->middleware("auth:webadmins");
+
+
+
+
+
 
 //Routes
 Auth::routes();

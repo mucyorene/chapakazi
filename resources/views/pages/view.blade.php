@@ -14,10 +14,10 @@
 
   .rating>label {
     position: relative;
-    width: 0.4em;
+    width: 1em;
     font-size: 2vw;
     color: #FFD600;
-    cursor: pointer;
+    cursor: pointer
   }
 
   .rating>label::before {
@@ -41,105 +41,98 @@
 </style>
 
 
-  <section id="main-slider" class="no-margin">
-    <div class="carousel slide">
-      <div class="carousel-inner">
-        <div class="item active" style="background-color:#2a3b4e;">
-          <div class="container">
-            <div class="row slide-margin">
-              <div class="col-sm-6">
-                <div class="carousel-content">
-                  <h2 class="animation animated-item-1">Welcome <span>Chapakazi</span></h2>
-                  <p class="animation animated-item-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus consectetur nunc pulvinar libero bibendum eleifend. Suspendisse scelerisque eros et mauris faucibus venenatis.</p>
-                  <a class="btn-slide animation animated-item-3" href="#">Read More</a>
-                </div>
-              </div>
-
-              <div class="col-sm-6 hidden-xs animation animated-item-4">
-                <div class="slider-img">
-                  <img src="{{ asset('images/slider/img3.png') }}" class="img-responsive">
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-        
-      </div>
-    </div>
-    <!--/.carousel-->
-  </section>
   <!--/#main-slider-->
-
+<br><br><br><br><br>
   <section id="team" class="team">
     <div class="container">
 
       <div class="section-title">
-        <h2>These are ready to be recruited</h2>
+        <h2>Read the details about {{ $casual->firstName}} {{ $casual->lastName}}</h2>
         <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
       </div>
       <br>
-      @if (count($employees) > 0)
       <div class="row gy-4">
-        <div class="col-md-12 col-lg-">
-
-            <form class="form">
-              <input type="text" name="" placeholder="Type your search !" class="form-control text-center" id="">
-            </form>
-
-        </div>
-      </div>
-      <br>
-      <div class="row gy-4">
-
-<!-- Button trigger modal -->
-        
-        @foreach ($employees as $employee)
-          
-            <div class="col-lg-4 col-md-6" >
-              <div class="member">
-                <img src="profiles/{{ $employee->profile}}" alt="">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4 col-md-4">
+            <div class="member">
+                <img src="{{ asset('profiles/'.$casual->profile)}}" alt="No Image found">
+                
+                @if (Auth::guard('webemployers')->id() > 0)
                     {{-- Rating system --}}
-                <div class="rating">
-                    <input type="radio"  name="rating" value="5" id="5"><label for="5"> ☆ </label>
-                </div>
-
-                <h4 id="viewEmployee">{{ $employee->firstName}} {{ $employee->lastName}}</h4>
-                <a href="/viewCasual/{{ $employee->id}}">More</a><br>
-                <small style="color:red;">{{ $employee->profession}}</small>
-                <p>
-                  <strong>Per Day: </strong>{{ $employee->ratePerDay }}
-                </p>
-                <div class="social">
-                  <div class="row">
-                    <div class="col-3"></div>
-                    <div class="col-6">
-                      @if (Auth::guard('webemployers')->id() > 0)
-                        <form action="/userCart" method="post">
-                          @csrf
-                          <input type="hidden" name="employersId" value="{{ Auth::guard('webemployers')->id()}}">
-                          <input type="hidden" name="employeeId" value="{{ $employee->id }}">
-                          <button type="submit" class="btn btn-success btn-sm btn-flat">Recruite</button>
-                        </form> 
-                      @else
-                          <button href="/authentication" id="recruite" class="btn btn-info btn-sm btn-flat"><strong>Recruite</strong></button>
-                      @endif
-                      
-                      {{-- <a href="casual/{{$employee->id}}" class="btn btn-success btn-sm btn-flat">Add to list</a> --}}
-                    </div>
-                    <div class="col-3"></div>
-                    
+                  <div class="rating">
+                      <input type="radio"  name="rating" value="5" class="id10" id="5"><label for="5">☆</label>
+                      <input type="radio" name="rating" value="4" class="id1" id="4"><label for="4">☆</label>
+                      <input type="radio" name="rating" value="3" class="id1" id="3"><label for="3">☆</label>
+                      <input type="radio" name="rating" value="2" class="id1" id="2"><label for="2">☆</label>
+                      <input type="radio" name="rating" value="1" class="id1" id="1"><label for="1">☆</label>
                   </div>
+
+                  <script>
+                    $(function(){
+                      $("[name=rating]").change(function(){
+                        var id = $("[name=rating]:checked").val();
+                        alert(id)
+                      })
+                    });
+                  </script>
+
+                @else
+                    {{-- Rating system --}}
+                  <div class="rating">
+                      <input type="radio"  name="rating" value="5" id="5"><label for="5"> ☆ </label>
+                  </div>
+                @endif
+                <div class="row">
+                    <div class="col-md-12"><br><br>
+                        <table class="table-borderless" style="color:black;">
+                            <tr>
+                                <td><strong>Names: &nbsp;</strong></td>
+                                <td>{{ $casual->firstName}} {{ $casual->lastName}}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Profession: </strong> &nbsp;</td>
+                                <td>{{ $casual->profession}}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Availability: </strong> &nbsp;</td>
+                                <td>{{ $casual->availability}}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Biography: </strong> &nbsp;</td>
+                                <td>{{ $casual->littleBiography}}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Date of Birth: </strong> &nbsp;</td>
+                                <td>{{ $casual->dob}}</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-              </div>
+                
+                <div class="social">
+                    <div class="row">
+                        <div class="col-3"></div>
+                        <div class="col-6">
+                            @if (Auth::guard('webemployers')->id() > 0)
+                            <form action="/userCart" method="post">
+                                @csrf
+                                <input type="hidden" name="employersId" value="{{ Auth::guard('webemployers')->id()}}">
+                                <input type="hidden" name="employeeId" value="{{ $casual->id }}">
+                                <button type="submit" class="btn btn-success btn-sm btn-flat">Recruite</button>
+                            </form> 
+                            @else
+                                <button href="/authentication" id="recruite" class="btn btn-info btn-sm btn-flat"><strong>Recruite</strong></button>
+                            @endif
+                            
+                            {{-- <a href="casual/{{$employee->id}}" class="btn btn-success btn-sm btn-flat">Add to list</a> --}}
+                        </div>
+                        <div class="col-3"></div>                    
+                    </div>
+                </div>
             </div>
-
-        @endforeach
-
+        </div>
+        <div class="col-lg-4"></div>
       </div> 
-      @else
-          
-      @endif
     </div><br>
   </section>
 

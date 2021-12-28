@@ -14,6 +14,12 @@
   <link href="{{ asset('css/prettyPhoto.css')}}" rel="stylesheet">
   <link href="{{ asset('css/style.css')}}" rel="stylesheet" />
   {{-- <link rel="stylesheet" href="{{ asset('assets/vendor/css/style.css') }}"> --}}
+
+  
+<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
+<script src="{{ asset("bootstrap/js/bootstrap.js") }}"></script>
+
+
 </head>
 
 <body>
