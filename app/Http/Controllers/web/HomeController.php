@@ -24,8 +24,8 @@ class HomeController extends Controller
 {
     
     public function index(){
-        $employees = employees::where('status','=','0')->get();
-        return view('index')->with('employees', $employees);
+        // $employees = employees::where('status','=','0')->get();
+        return view('index');
     }
     public function about(){
         return view('pages/about');
@@ -56,6 +56,27 @@ class HomeController extends Controller
     public function employerProfile($id){
         $real = Employers::find($id);
         return view('dashboard/pages/userProfile',compact('real'));
+    }
+
+    public function loadEmployees(){
+        $employees = employees::where('status','=','0')->get();
+        return view('pages/load_employee',compact('employees'));
+    }
+
+    public function indexSearch($key){
+        $employees = employees::where('firstName','LIKE','%'.$key.'%')
+                            ->orwhere('lastName','LIKE','%'.$key.'%')
+                            ->orwhere('category','LIKE','%'.$key.'%')
+                            ->get();
+        // if ($results) {
+        //     foreach ($results as $value) {
+        //         echo ($value->lastName);
+        //     }
+        // }else{
+        //     return "Results not found";
+        // }
+        return view('pages/load_search_results',compact('employees'));
+    
     }
 
     public function myCasuals(){      
@@ -297,7 +318,7 @@ class HomeController extends Controller
 
         $myEmployees = Auth::guard('webemployers')->user()->recruitedEmployees()->with(['hiredEmployee'])->get();
         $totalNumber = count($myEmployees);
-        
+
         return view("dashboard.userHome",compact('totalNumber','myEmployees'));
     }
 

@@ -172,7 +172,7 @@
             <div class="form-row">
               <div class="form-group col-md-6 mb-0">
                 <label>Experience</label>
-                <textarea name="experience" id="littleBiography" class="form-control" value="{{ old('experience') }}" required=""></textarea>
+                <input type="number" name="experience" id="littleBiography" class="form-control" value="{{ old('experience') }}" required="">
                 <div class="invalid-feedback">
                   @error('experience') {{ $message }}@enderror
                 </div>
@@ -188,7 +188,10 @@
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label>Availability</label>
-                <input type="text" name="availability" id="availability" value="{{ old('availability') }}" class="form-control" required="">
+                <select name="availability" id="availability" class="form-control">
+                  <option value="Full-Time">Full-Time</option>
+                  <option value="Part-Time">Part-Time</option>
+                </select>
                 <div class="invalid-feedback">
                   @error('dateOfBirth') {{ $message }}@enderror
                 </div>

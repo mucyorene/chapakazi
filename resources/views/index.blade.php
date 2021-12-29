@@ -50,14 +50,16 @@
               <div class="col-sm-6">
                 <div class="carousel-content">
                   <h2 class="animation animated-item-1">Welcome <span>Chapakazi</span></h2>
-                  <p class="animation animated-item-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus consectetur nunc pulvinar libero bibendum eleifend. Suspendisse scelerisque eros et mauris faucibus venenatis.</p>
+                  <p class="animation animated-item-2">
+                    Chapakazi is an automated and web-based system that will help both employees and employers to locate each other.
+                  </p>
                   <a class="btn-slide animation animated-item-3" href="#">Read More</a>
                 </div>
               </div>
 
               <div class="col-sm-6 hidden-xs animation animated-item-4">
                 <div class="slider-img">
-                  <img src="{{ asset('images/slider/img3.png') }}" class="img-responsive">
+                  <img src="{{ asset('images/slider/index1.jpg') }}" class="img-responsive">
                 </div>
               </div>
 
@@ -75,71 +77,39 @@
     <div class="container">
 
       <div class="section-title">
-        <h2>These are ready to be recruited</h2>
-        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        <h2>Available for recruitment</h2>
+        <p>Find your suitable employee</p>
       </div>
       <br>
-      @if (count($employees) > 0)
+
       <div class="row gy-4">
-        <div class="col-md-12 col-lg-">
+          <div class="col-md-12 col-lg-">
 
-            <form class="form">
-              <input type="text" name="" placeholder="Type your search !" class="form-control text-center" id="">
-            </form>
-
-        </div>
+              <form class="form">
+              <input type="text" name="" placeholder="Type your search !" class="form-control text-center" id="searching">
+              <strong class="text-danger">Categories</strong>
+              
+              </form>
+          </div>
+          
+          <div id="loadEmployees"></div>
       </div>
-      <br>
-      <div class="row gy-4">
+      
+      <script>
+        $(document).ready(function(){
+          $("#loadEmployees").load('/loadEmployee');
+          $("#searching").keyup(function(){
+            var data = $(this).val();
+            if (data != '') {
+              $("#loadEmployees").load('/chapa/searching/'+data);
+            }else{
+              $("#loadEmployees").load('/loadEmployee');
+            }
+          })
+        });
+      </script>
 
-<!-- Button trigger modal -->
-        
-        @foreach ($employees as $employee)
-          
-            <div class="col-lg-4 col-md-6" >
-              <div class="member">
-                <img src="profiles/{{ $employee->profile}}" alt="">
-                    {{-- Rating system --}}
-                <div class="rating">
-                    <input type="radio"  name="rating" value="5" id="5"><label for="5"> ☆ </label>
-                </div>
 
-                <h4 id="viewEmployee">{{ $employee->firstName}} {{ $employee->lastName}}</h4>
-                <a href="/viewCasual/{{ $employee->id}}">More</a><br>
-                <small style="color:red;">{{ $employee->profession}}</small>
-                <p>
-                  <strong>Per Day: </strong>{{ $employee->ratePerDay }}
-                </p>
-                <div class="social">
-                  <div class="row">
-                    <div class="col-3"></div>
-                    <div class="col-6">
-                      @if (Auth::guard('webemployers')->id() > 0)
-                        <form action="/userCart" method="post">
-                          @csrf
-                          <input type="hidden" name="employersId" value="{{ Auth::guard('webemployers')->id()}}">
-                          <input type="hidden" name="employeeId" value="{{ $employee->id }}">
-                          <button type="submit" class="btn btn-success btn-sm btn-flat">Recruite</button>
-                        </form> 
-                      @else
-                          <button href="/authentication" id="recruite" class="btn btn-info btn-sm btn-flat"><strong>Recruite</strong></button>
-                      @endif
-                      
-                      {{-- <a href="casual/{{$employee->id}}" class="btn btn-success btn-sm btn-flat">Add to list</a> --}}
-                    </div>
-                    <div class="col-3"></div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-
-        @endforeach
-
-      </div> 
-      @else
-          
-      @endif
     </div><br>
   </section>
 
@@ -165,7 +135,7 @@
       </div>
     </div>
   </div> -->
-
+{{-- 
   <section id="partner">
     <div class="container">
       <div class="center wow fadeInDown">
@@ -184,7 +154,7 @@
       </div>
     </div>
     <!--/.container-->
-  </section>
+  </section> --}}
 
 
   <!--/#partner-->

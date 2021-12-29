@@ -91,15 +91,15 @@
                             </tr>
                             <tr>
                                 <td><strong>Profession: </strong> &nbsp;</td>
-                                <td>{{ $casual->profession}}</td>
+                                <td>{{ $casual->category}}</td>
                             </tr>
                             <tr>
                                 <td><strong>Availability: </strong> &nbsp;</td>
-                                <td>{{ $casual->availability}}</td>
+                                <td>{{ $casual->availability}} hours/day</td>
                             </tr>
                             <tr>
-                                <td><strong>Biography: </strong> &nbsp;</td>
-                                <td>{{ $casual->littleBiography}}</td>
+                                <td><strong>Experience: </strong> &nbsp;</td>
+                                <td>{{ $casual->experience}} years</td>
                             </tr>
                             <tr>
                                 <td><strong>Date of Birth: </strong> &nbsp;</td>

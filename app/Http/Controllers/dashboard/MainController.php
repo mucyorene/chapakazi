@@ -78,7 +78,7 @@ class MainController extends Controller
         $newEmp->dob = $request->input("dateOfBirth");
         $newEmp->availability = $request->input("availability");
         $newEmp->ratePerDay = $request->input("ratePerDay");
-        $newEmp->category = $request->input("proffession");
+        $newEmp->category = $request->input("category");
         $newEmp->gender = $request->input("gender");
         $newEmp->phone = $request->input("phone");
 

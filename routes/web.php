@@ -35,7 +35,12 @@ Route::get('/viewCasual/{id}',[HomeController::class,'showCasual']);
 
 Route::post('/postAdmin',[HomeController::class,'postAdmin'])->name("postAdmin");
 
+Route::get('/loadEmployee',[HomeController::class,'loadEmployees']);
+Route::get('/chapa/searching/{search}',[HomeController::class,'indexSearch']);
 
+// Route::get('/loadEmployee', function () {
+//     return view('pages/load_employee');
+// });
 
 
 //Socialite
