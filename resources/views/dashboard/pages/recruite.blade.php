@@ -30,13 +30,13 @@
                     <tr>
                       <th>Names</th>
                       <th>IDNumber</th>
-                      <th>Profession</th>
+                      <th>Category</th>
                       <th>Availability</th>
                       <th>Rate Per Day</th>
-                      <th>Bio</th>
+                      <th>Experience</th>
                       <th>Status</th>
                       <th>Profile</th>
-                      <th>Email</th>
+                      <th>Gender</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -45,10 +45,10 @@
                     <tr>
                       <td>{{ $employee->firstName }} {{$employee->lastName}}</td>
                       <td>{{ $employee->identificationNumber }}</td>
-                      <td>{{ $employee->profession }}</td>
+                      <td>{{ $employee->category }}</td>
                       <td>{{ $employee->availability }}</td>
                       <td>{{ $employee->ratePerDay }}</td>
-                      <td>{{ $employee->littleBiography }}</td>
+                      <td>{{ $employee->Experience }}</td>
                       <td>{{ $employee->status }}</td>
                       <td class="avatar avatar mr-2 avatar-xl bg-white">
                           <img class="img img-fluid" src="profiles/{{$employee->profile}}" alt="No profile">
@@ -171,10 +171,10 @@
             </div>
             <div class="form-row">
               <div class="form-group col-md-6 mb-0">
-                <label>Litle Bio</label>
-                <textarea name="littleBiography" id="littleBiography" class="form-control" value="{{ old('lastName') }}" required=""></textarea>
+                <label>Experience</label>
+                <textarea name="experience" id="littleBiography" class="form-control" value="{{ old('experience') }}" required=""></textarea>
                 <div class="invalid-feedback">
-                  @error('littleBiography') {{ $message }}@enderror
+                  @error('experience') {{ $message }}@enderror
                 </div>
               </div>
               <div class="form-group col-md-6">
@@ -210,8 +210,13 @@
                 </div>
               </div>
               <div class="form-group col-md-6">
-                <label>Email</label>
-                <input type="email" name="email" id="email" class="form-control"  value="{{ old('email') }}" required="">
+                <label>Gender</label> 
+
+                <select name="gender" id="email" class="form-control">
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+                
                 <div class="invalid-feedback">
                   @error('email') {{ $message }}@enderror
                 </div>
@@ -220,13 +225,29 @@
 
             <div class="form-row">
               <div class="form-group col-md-6 mb-0">
-                <label>Profession</label>
-                <textarea class="form-control" id="proffession" value="{{ old('proffession') }}" name="proffession" required=""></textarea>
+                <label>Category</label>
+                <select name="category" id="category" class="form-control">
+                  <option value="Plumber">Plumber</option>
+                  <option value="Electricians">Electricians</option>
+                  <option value="Mechanics">Mechanics</option>
+                  <option value="House Maid">House Maid</option>
+                  <option value="Baby Seaters">Baby Seaters</option>
+                  <option value="Baby Seaters">Cleaners</option>
+                  <option value="Baby Seaters">Gate keepers</option>
+                  <option value="Baby Seaters">Gardeners</option>
+
+                </select>
                 <div class="invalid-feedback">
                   @error('proffession') {{ $message }}@enderror
                 </div>
               </div>
+
               <div class="form-group col-md-6">
+                <label>Phone</label>
+                  <input type="text" class="form-control" name="phone">
+              </div>
+
+              <div class="form-group col-md-12">
                 <label>Profile Image</label>
                 <div class="custom-file">
                   <input type="file" class="custom-file-input" name="formProfile" id="formProfile">

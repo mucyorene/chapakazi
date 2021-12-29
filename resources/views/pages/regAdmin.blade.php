@@ -22,7 +22,7 @@
         <input type="text" id="password" class="fadeIn third" name="username" placeholder="Your Username" value="{{ old('username') }}">
             <span class="text-danger">@error('uname') {{ $message }}@enderror</span>
         <input type="password" id="password" class="fadeIn third" name="password" placeholder="Your password">
-        <input type="submit" class="fadeIn fourth" value="Log In">
+        <input type="submit" class="fadeIn fourth" value="Register">
       </form>
   
       <!-- Remind Passowrd -->

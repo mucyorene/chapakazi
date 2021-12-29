@@ -58,7 +58,8 @@ class HomeController extends Controller
         return view('dashboard/pages/userProfile',compact('real'));
     }
 
-    public function myCasuals(){                  
+    public function myCasuals(){      
+
         $data = Auth::guard('webemployers')->user()->recruitedEmployees()->with(['hiredEmployee'])->get();
 
         return view('dashboard/pages/employerCasuals',compact('data'));
@@ -66,6 +67,7 @@ class HomeController extends Controller
         // foreach ($employersLists as $values) {
         //    echo $values->hiredEmployee->firstName;
         // }
+
     }
 
     public function removeMyCasual($id){
@@ -73,6 +75,38 @@ class HomeController extends Controller
         $update = Auth::guard('webemployers')->user()->recruitedEmployees()->with('hiredEmployee')->get();
 
         $updating = employees::where('id','=',$id)->update(['status'=>'0']);
+
+        $updating = employees::find($id);
+        $names = $updating->firstName." ".$updating->lastName;
+        $employerName = Auth::guard('webemployers')->user()->fullNames;
+
+        $receiver="+250784494820";
+        $sender="+250788890071";
+        $mssg="Hello ".$names." , ".$employerName." as your employer, decided to part away with you!";
+
+        $data=array(
+                "sender"=>$sender,
+                "recipients"=>$receiver,
+                "message"=>$mssg,
+            );
+
+        $url="https://www.intouchsms.co.rw/api/sendsms/.json";
+        $data=http_build_query($data);
+        $username="renemucyo";
+        $password="mucyo12345";
+
+        $ch=curl_init();
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch,CURLOPT_USERPWD,$username.":".$password);
+        curl_setopt($ch,CURLOPT_POST,true);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,0);
+        curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
+        $result=curl_exec($ch);
+        $httpcode=curl_getinfo($ch,CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+
 
         $toDelete = RecruitedEmployee::where('employerId','=',Auth::guard('webemployers')->id())
                                     ->where('employeeId','=',$id)
@@ -112,12 +146,18 @@ class HomeController extends Controller
 
         $newAdmin->save();
         if ($newAdmin) {
-           return back()->with('success','Thanks for registering new administrator');
+           return back();
         }
     }
 
+    // public function confirmEmployerAccount($id){
+    //     $updating = Employers::find($id);
+    //     $updating->status = "1";
+    //     return redirect('/authentication');
+    // }
+
     public function saveUser(Request $request){
-        // return $request->input();
+
         $request->validate([
             'names'=>'required|min:5|max:40',
             'phone'=>'required|min:10|max:14',
@@ -129,13 +169,46 @@ class HomeController extends Controller
         
         $newEmployer = new ModelsEmployers();
         $newEmployer->fullNames = $request->input('names');
-        $newEmployer->phone = $request->input('email');
+        $newEmployer->phone = $request->input('phone');
         $newEmployer->email = $request->input('email');
         $newEmployer->address = $request->input('address');
         $newEmployer->username = $request->input('username');
+        $newEmployer->profile = "avatar.png";
+        $newEmployer->biography = "My biography";
         $newEmployer->password = Hash::make($request->input('password'));
 
+
+        $phones = $request->input('phone');
+        $names = $request->input('names');
+
         $newEmployer->save();
+
+        $receiver=$phones;
+        $sender="+250788890071";
+        $mssg="Hello ".$names."You are welcome, Thanks for signing up at CHAPAKAZI, Better casuals, are waiting for you!";
+
+        $data=array(
+                "sender"=>$sender,
+                "recipients"=>$receiver,
+                "message"=>$mssg,
+            );
+
+        $url="https://www.intouchsms.co.rw/api/sendsms/.json";
+        $data=http_build_query($data);
+        $username="renemucyo";
+        $password="mucyo12345";
+
+        $ch=curl_init();
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch,CURLOPT_USERPWD,$username.":".$password);
+        curl_setopt($ch,CURLOPT_POST,true);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,0);
+        curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
+        $result=curl_exec($ch);
+        $httpcode=curl_getinfo($ch,CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
         if ($newEmployer) {
            return redirect('/authentication');
         }else{
@@ -195,7 +268,7 @@ class HomeController extends Controller
     }
 
     public function mySavedList(){
-
+       
         $employersList = Auth::guard('webemployers')->user()->employees()->with(['employee'])->get();
         $totalNumber = count($employersList);
 
@@ -214,14 +287,17 @@ class HomeController extends Controller
         // }
                
     }
+    
     public static function displayNumber(){
         $employersList = Auth::guard('webemployers')->user()->employees()->with(['employee'])->get();
         return $totalNumber = count($employersList);
     }
 
     public function userDashView(){
+
         $myEmployees = Auth::guard('webemployers')->user()->recruitedEmployees()->with(['hiredEmployee'])->get();
         $totalNumber = count($myEmployees);
+        
         return view("dashboard.userHome",compact('totalNumber','myEmployees'));
     }
 
@@ -235,76 +311,6 @@ class HomeController extends Controller
         Auth::guard('webemployers')->logout();
         return redirect('/authentication');
     }
-
-
-    //Payment integration
-
-    // public function initialize()
-    // {
-    //     $userId = 
-    //     //This generates a payment reference
-    //     $reference = Flutterwave::generateReference();
-
-    //     // Enter the details of the payment
-    //     $data = [
-    //         'payment_options' => 'card,banktransfer',
-    //         'amount' => 500,
-    //         'email' => request()->email,
-    //         'tx_ref' => $reference,
-    //         'currency' => "Rwf",
-    //         'redirect_url' => route('callback'),
-    //         'customer' => [
-    //             'email' => request()->email,
-    //             "phone_number" => request()->phone,
-    //             "name" => request()->name
-    //         ],
-
-    //         "customizations" => [
-    //             "title" => 'Movie Ticket',
-    //             "description" => "20th October"
-    //         ]
-    //     ];
-
-    //     $payment = Flutterwave::initializePayment($data);
-
-
-    //     if ($payment['status'] !== 'success') {
-    //         // notify something went wrong
-    //         return;
-    //     }
-
-    //     return redirect($payment['data']['link']);
-    // }
-
-    // public function callback()
-    // {
-        
-    //     $status = request()->status;
-
-    //     //if payment is successful
-    //     if ($status ==  'successful') {
-        
-    //     $transactionID = Flutterwave::getTransactionIDFromCallback();
-    //     $data = Flutterwave::verifyTransaction($transactionID);
-
-    //     dd($data);
-    //     }
-    //     elseif ($status ==  'cancelled'){
-    //         //Put desired action/code after transaction has been cancelled here
-    //     }
-    //     else{
-    //         //Put desired action/code after transaction has failed here
-    //     }
-    //     // Get the transaction from your DB using the transaction reference (txref)
-    //     // Check if you have previously given value for the transaction. If you have, redirect to your successpage else, continue
-    //     // Confirm that the currency on your db transaction is equal to the returned currency
-    //     // Confirm that the db transaction amount is equal to the returned amount
-    //     // Update the db transaction record (including parameters that didn't exist before the transaction is completed. for audit purpose)
-    //     // Give value for the transaction
-    //     // Update the transaction to note that you have given value for the transaction
-    //     // You can also redirect to your success page from here
-
-    // }
 
 
     public function employeeCart(Request $request){
@@ -322,23 +328,69 @@ class HomeController extends Controller
 
     public function saveRecruited(){
         $employersList = Auth::guard('webemployers')->user()->employees()->with(['employee'])->get();
-        
-
+              
         foreach ($employersList as $value) {
+
+            //Moving from cart to hired employeee
+
             $recruitedEmp = new RecruitedEmployee();
             $recruitedEmp->employerId = Auth::guard('webemployers')->id();
             $recruitedEmp->employeeId = $value->employee->id;
+            
             $recruitedEmp->save();
 
-            $findEmployee = employees::find($value->employee->id);
-            $findEmployee->status = "1";
-            $findEmployee->update();
+            
+            //Updating existing employee status
 
+            $findEmployee = employees::find($value->employee->id);
+
+            $findEmployee->status = "1";
+
+            //Variables to send into SMS function
+
+            //$phones = $findEmployee->phone;
+
+            $phones = "+250784494820";
+            $names = $findEmployee->firstName." ".$findEmployee->lastName;
+            $employerNames = Auth::guard('webemployers')->user()->fullNames;
+            $employerPhones = Auth::guard('webemployers')->user()->phone;
+
+            //Calling SMS function
+
+            $receiver=$phones;
+                $sender="+250788890071";
+                $mssg="Hello ".$names." You're hired by ".$employerNames.", call employer at: ".$employerPhones;
+        
+                $data=array(
+                        "sender"=>$sender,
+                        "recipients"=>$receiver,
+                        "message"=>$mssg,
+                    );
+        
+                $url="https://www.intouchsms.co.rw/api/sendsms/.json";
+                $data=http_build_query($data);
+                $username="renemucyo";
+                $password="mucyo12345";
+        
+                $ch=curl_init();
+                curl_setopt($ch,CURLOPT_URL,$url);
+                curl_setopt($ch,CURLOPT_USERPWD,$username.":".$password);
+                curl_setopt($ch,CURLOPT_POST,true);
+                curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+                curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,0);
+                curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
+                $result=curl_exec($ch);
+                $httpcode=curl_getinfo($ch,CURLINFO_HTTP_CODE);
+                curl_close($ch);
+
+            $findEmployee->update();
+           
             if ($recruitedEmp && $findEmployee) {
                 $dele = Auth::guard('webemployers')->user()->employees();
                 $dele->delete();
             }
         }
+
     }
 
     public function removeFromList($employerIds, $employeeIds){

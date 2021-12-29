@@ -5,21 +5,12 @@
                                 collapse-btn"> <i data-feather="align-justify"></i></a></li>
         <li><a href="#" class="nav-link nav-link-lg fullscreen-btn">
             <i data-feather="maximize"></i>
-          </a></li>
-        <li>
-          <form class="form-inline mr-auto">
-            <div class="search-element">
-              <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="200">
-              <button class="btn" type="submit">
-                <i class="fas fa-search"></i>
-              </button>
-            </div>
-          </form>
+          </a>
         </li>
       </ul>
     </div>
     <ul class="navbar-nav navbar-right">
-      <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
+      {{-- <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
           class="nav-link nav-link-lg message-toggle"><i data-feather="mail"></i>
           <span class="badge headerBadge1">
             6 </span> </a>
@@ -128,19 +119,21 @@
             <a href="#">View All <i class="fas fa-chevron-right"></i></a>
           </div>
         </div>
-      </li>
+      </li> --}}
       <li class="dropdown"><a href="#" data-toggle="dropdown"
-          class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="{{ asset('dashboard/assets/img/user.png') }}"
+          class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="{{ asset('dashboard/assets/img/users/avatar.png') }}"
             class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
         <div class="dropdown-menu dropdown-menu-right pullDown">
-          <div class="dropdown-title">Hello Sarah Smith</div>
-          <a href="profile.html" class="dropdown-item has-icon"> <i class="far
+          <div class="dropdown-title">{{Auth::guard('webadmins')->user()->names}}</div>
+          <a href="" class="dropdown-item has-icon"> <i class="far
                                     fa-user"></i> Profile
-          </a> <a href="timeline.html" class="dropdown-item has-icon"> <i class="fas fa-bolt"></i>
-            Activities
-          </a> <a href="#" class="dropdown-item has-icon"> <i class="fas fa-cog"></i>
-            Settings
           </a>
+          {{-- <a href="timeline.html" class="dropdown-item has-icon"> <i class="fas fa-bolt"></i>
+            Activities
+          </a>
+          <a href="#" class="dropdown-item has-icon"> <i class="fas fa-cog"></i>
+            Settings
+          </a> --}}
           <div class="dropdown-divider"></div>
           <a href="/logout" class="dropdown-item has-icon text-danger"> <i class="fas fa-sign-out-alt"></i>
             Logout
@@ -286,7 +279,7 @@
       </li> --}}
       {{-- <li><a class="nav-link" href="vector-map.html"><i data-feather="map-pin"></i><span>Vector
             Map</span></a></li> --}}
-      <li class="menu-header">Pages</li>
+      {{-- <li class="menu-header">Pages</li> --}}
       {{-- <li class="dropdown">
         <a href="#" class="menu-toggle nav-link has-dropdown"><i
             data-feather="user-check"></i><span>Auth</span></a>

@@ -16,7 +16,9 @@ class Employers extends Authenticatable
         'email',
         'address',
         'username',
-        'password'
+        'password',
+        'biography',
+        'profile'
     ];
     //Access to employees
 

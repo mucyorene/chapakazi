@@ -27,6 +27,9 @@ Route::get('/',[HomeController::class,'index'])->name('chap.index');
 Route::get('/about',[HomeController::class,'about']);
 Route::get('/services',[HomeController::class,'services']);
 Route::get('/contact',[HomeController::class, 'contact']);
+
+//Route::get('/confirmAccount/{id}',[HomeController::class, 'confirmEmployerAccount']);
+
 Route::get('/adminRegisteration',[HomeController::class,'registerAdmin']);
 Route::get('/viewCasual/{id}',[HomeController::class,'showCasual']);
 
@@ -121,7 +124,7 @@ Auth::routes();
 
 //Cart Controller
 Route::get('casual/{id}',[HomeController::class,'addToList'])->name('employeeToList');
-Route::get('savedList',[HomeController::class, 'mySavedList'])->name('recruites');
+Route::get('/savedList',[HomeController::class, 'mySavedList'])->name('recruites')->middleware('auth:webemployers');
 
 // The route that the button calls to initialize payment
 Route::post('/pay', [HomeController::class, 'initialize'])->name('pay');

@@ -18,12 +18,13 @@ class CreateEmployeesTable extends Migration
             $table->string('identificationNumber')->unique();
             $table->string('firstName');
             $table->string('lastName');
-            $table->string('littleBiography');
+            $table->string('experience');
             $table->date('dob');
             $table->string('availability');
             $table->string('ratePerDay'); 
-            $table->string('profession');
-            $table->string('email');
+            $table->string('category');
+            $table->string('gender');
+            $table->string('phone');
             $table->string('status');
             $table->string('profile');
             $table->timestamps();

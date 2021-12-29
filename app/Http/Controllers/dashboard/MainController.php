@@ -10,8 +10,20 @@ use App\Models\Employers;
 class MainController extends Controller
 {
     public function index(){
-        
-        return view("dashboard.index");
+
+        $hired = employees::where('status','=','1')->latest()->get();
+        $data = employees::where('status','=','1')->latest()->get();
+
+        $employers = Employers::All();
+        $employee = employees::all();
+
+        $totalEmployers = count($employers);
+        $totalHired = count($hired);
+        $totalEmployee = count($employee);
+        $totalIncome = (500*$totalHired);
+
+        return view("dashboard.index", compact('data','totalEmployers','totalHired','totalEmployee','totalIncome'));
+
     }
     public function systemCasuals(){
 
@@ -40,15 +52,16 @@ class MainController extends Controller
     public function saveEmployee(Request $request)
     {
         $request->validate([
-            'identificationNumber'=>'required|min:16:max:16',
+            'identificationNumber'=>'required|min:16|max:16',
             'firstName'=>'required',
             'lastName'=>'required',
-            'littleBiography'=>'required',
+            'experience'=>'required',
             'dateOfBirth'=>'required',
             'availability'=>'required',
             'ratePerDay'=>'required',
-            'proffession'=>'required',
-            'email'=>'required',
+            'category'=>'required',
+            'gender'=>'required',
+            'phone'=>'required',
             'formProfile'=>'required'
         ]);
         
@@ -61,13 +74,14 @@ class MainController extends Controller
         $newEmp->identificationNumber = $request->input("identificationNumber");
         $newEmp->firstName = $request->input("firstName");
         $newEmp->lastName = $request->input("lastName");
-        $newEmp->littleBiography = $request->input("littleBiography");
+        $newEmp->experience = $request->input("experience");
         $newEmp->dob = $request->input("dateOfBirth");
         $newEmp->availability = $request->input("availability");
         $newEmp->ratePerDay = $request->input("ratePerDay");
-        $newEmp->profession = $request->input("proffession");
-        $newEmp->email = $request->input("email");
-        
+        $newEmp->category = $request->input("proffession");
+        $newEmp->gender = $request->input("gender");
+        $newEmp->phone = $request->input("phone");
+
         //File
         $newEmp->profile = $new_name;
 

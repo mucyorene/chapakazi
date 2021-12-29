@@ -21,6 +21,8 @@ class CreateEmployersTable extends Migration
             $table->string('address');
             $table->string('username');
             $table->string('password');
+            $table->string('biography');
+            $table->string('profile');
             $table->timestamps();
         });
     }

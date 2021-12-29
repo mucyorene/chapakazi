@@ -22,7 +22,7 @@
             <span class="text-danger">@error('username') {{ $message }}@enderror</span>
         <input type="password" id="password" class="fadeIn third" name="password" placeholder="Your password"><br>
             <span class="text-danger">@error('password') {{ $message }}@enderror</span><br>
-        <input type="submit" class="fadeIn fourth" value="Log In">
+        <input type="submit" class="fadeIn fourth" value="Sign up">
       </form>
   
       <!-- Remind Passowrd -->

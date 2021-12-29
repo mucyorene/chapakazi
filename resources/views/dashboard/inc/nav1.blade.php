@@ -128,7 +128,7 @@
         </div>
       </li> --}}
       <li class="dropdown"><a href="#" data-toggle="dropdown"
-          class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="{{ asset('dashboard/assets/img/users/avatar.png') }}"
+          class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="{{ asset('dashboard/assets/img/users/'.Auth::guard('webemployers')->user()->profile) }}"
             class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
         <div class="dropdown-menu dropdown-menu-right pullDown">
           <div class="dropdown-title">{{ Auth::guard('webemployers')->user()->fullNames }}</div>
