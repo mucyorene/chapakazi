@@ -1,7 +1,7 @@
 @extends('inc.layouts')
 @section('content')
 
-<link href="{{ asset('css/myCustomer.css')}}" rel="stylesheet" />
+<link href="{{ secure_asset('css/myCustomer.css')}}" rel="stylesheet" />
 
 <style>
     .rating {
@@ -127,7 +127,7 @@
 
 
 
-  <script src="{{ asset('js/jquery.js') }}"></script>
+  <script src="{{ secure_asset('js/jquery.js') }}"></script>
   <script type="text/javascript">
     $(function(){
       $("#recruite").addClass('active');

@@ -102,7 +102,7 @@
 
 @endsection
 
-<script src="{{ asset('js/jquery.js')}}"></script>
+<script src="{{ secure_asset('js/jquery.js')}}"></script>
 <script type="text/javascript">
     $(function(){
     $("#services").addClass('active');

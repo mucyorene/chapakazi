@@ -1,8 +1,8 @@
 @extends('dashboard.inc.main')
 @section('content')
 
-<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
-<script src="{{ asset("bootstrap/js/bootstrap.js") }}"></script>
+<link rel="stylesheet" href="{{ secure_asset('bootstrap/css/bootstrap.css') }}">
+<script src="{{ secure_asset("bootstrap/js/bootstrap.js") }}"></script>
 
 <!-- Main Content -->
 <div class="main-content">
@@ -29,7 +29,7 @@
   </section>
 </div>
 
-<script src="{{ asset('js/jquery.js') }}"></script>
+<script src="{{ secure_asset('js/jquery.js') }}"></script>
 
 <script type="text/javascript">
   $(function(){
@@ -43,33 +43,33 @@
 
 
 <!-- General JS Scripts -->
-<script src="{{ asset('dashboard/assets/js/app.min.js')}}"></script>
+<script src="{{ secure_asset('dashboard/assets/js/app.min.js')}}"></script>
 
 <!-- Page Specific JS File -->
-<script src="{{ asset('dashboard/assets/bundles/datatables/datatables.min.js') }}"></script>
-<script src="{{ asset('dashboard/assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js')}}"></script>
-<script src="{{ asset('dashboard/assets/bundles/datatables/export-tables/dataTables.buttons.min.js') }}"></script>
-<script src="{{ asset('dashboard/assets/bundles/datatables/export-tables/buttons.flash.min.js') }}"></script>
-<script src="{{ asset('dashboard/assets/bundles/datatables/export-tables/jszip.min.js') }}"></script>
-<script src="{{ asset('dashboard/assets/bundles/datatables/export-tables/pdfmake.min.js') }}"></script>
-<script src="{{ asset('dashboard/assets/bundles/datatables/export-tables/vfs_fonts.js')}}"></script>
-<script src="{{ asset('dashboard/assets/bundles/datatables/export-tables/buttons.print.min.js') }}"></script>
-<script src="{{ asset('dashboard/assets/js/page/datatables.js') }}"></script>
+<script src="{{ secure_asset('dashboard/assets/bundles/datatables/datatables.min.js') }}"></script>
+<script src="{{ secure_asset('dashboard/assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{ secure_asset('dashboard/assets/bundles/datatables/export-tables/dataTables.buttons.min.js') }}"></script>
+<script src="{{ secure_asset('dashboard/assets/bundles/datatables/export-tables/buttons.flash.min.js') }}"></script>
+<script src="{{ secure_asset('dashboard/assets/bundles/datatables/export-tables/jszip.min.js') }}"></script>
+<script src="{{ secure_asset('dashboard/assets/bundles/datatables/export-tables/pdfmake.min.js') }}"></script>
+<script src="{{ secure_asset('dashboard/assets/bundles/datatables/export-tables/vfs_fonts.js')}}"></script>
+<script src="{{ secure_asset('dashboard/assets/bundles/datatables/export-tables/buttons.print.min.js') }}"></script>
+<script src="{{ secure_asset('dashboard/assets/js/page/datatables.js') }}"></script>
 <!-- Template JS File -->
-<script src="{{ asset('dashboard/assets/js/scripts.js')}}"></script>
+<script src="{{ secure_asset('dashboard/assets/js/scripts.js')}}"></script>
 <!-- Custom JS File -->
-<script src="{{ asset('dashboard/assets/js/custom.js') }}"></script>
+<script src="{{ secure_asset('dashboard/assets/js/custom.js') }}"></script>
 
   <!-- General JS Scripts -->
-  <script src="{{ asset('dashboard/assets/js/app.min.js') }}"></script>
+  <script src="{{ secure_asset('dashboard/assets/js/app.min.js') }}"></script>
   <!-- JS Libraies -->
-  <script src="{{ asset('dashboard/assets/bundles/apexcharts/apexcharts.min.js') }}"></script>
+  <script src="{{ secure_asset('dashboard/assets/bundles/apexcharts/apexcharts.min.js') }}"></script>
   <!-- Page Specific JS File -->
-  <script src="{{ asset('dashboard/assets/js/page/index.js') }}"></script>
+  <script src="{{ secure_asset('dashboard/assets/js/page/index.js') }}"></script>
   <!-- Template JS File -->
-  <script src="{{ asset('dashboard/assets/js/scripts.js') }}"></script>
+  <script src="{{ secure_asset('dashboard/assets/js/scripts.js') }}"></script>
   <!-- Custom JS File -->
-  <script src="{{ asset('dashboard/assets/js/custom.js') }}"></script>
+  <script src="{{ secure_asset('dashboard/assets/js/custom.js') }}"></script>
 </body>
 <!-- index-->
 
@@ -94,7 +94,7 @@
     </div>
     
     
-    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ secure_asset('js/jquery.js') }}"></script>
     <script type="text/javascript">
       $(function(){
         $("#dashboardAdmin").addClass('active');

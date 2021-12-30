@@ -54,7 +54,7 @@
         <div class="col-lg-4"></div>
         <div class="col-lg-4 col-md-4">
             <div class="member">
-                <img src="{{ asset('profiles/'.$casual->profile)}}" alt="No Image found">
+                <img src="{{ secure_asset('profiles/'.$casual->profile)}}" alt="No Image found">
                 
                 @if (Auth::guard('webemployers')->id() > 0)
 
@@ -149,7 +149,7 @@
 
 @endsection
 
-<script src="{{ asset('js/jquery.js') }}"></script>
+<script src="{{ secure_asset('js/jquery.js') }}"></script>
 <script type="text/javascript">
   $(function(){
     $("#recruite").addClass('active');

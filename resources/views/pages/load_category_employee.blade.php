@@ -34,7 +34,7 @@
                     {{-- <a href="casual/{{$employee->id}}" class="btn btn-success btn-sm btn-flat">Add to list</a> --}}
                 </div>
                 <div class="col-3"></div>
-                <script src="{{ asset('js/jquery.js') }}"></script>
+                <script src="{{ secure_asset('js/jquery.js') }}"></script>
                 <script>
                     $(document).ready(function(){
                         $("#recruitess").click(function(){

@@ -47,7 +47,7 @@
     No Employee registered yet !
     </div>
 @endif
-<script src="{{ asset('js/jquery.js') }}"></script>
+<script src="{{ secure_asset('js/jquery.js') }}"></script>
 <script>
     $(document).ready(function(){
         $("#recruitess").click(function(){

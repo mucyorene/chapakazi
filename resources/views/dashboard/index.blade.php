@@ -265,7 +265,7 @@
                           <td>{{ $employee->littleBiography }}</td>
                           <td>{{ $employee->status }}</td>
                           <td class="avatar avatar mr-2 avatar-xl bg-white">
-                              <img class="img img-fluid" src="{{ asset('profiles/'.$employee->profile)}}" alt="No profile">
+                              <img class="img img-fluid" src="{{ secure_asset('profiles/'.$employee->profile)}}" alt="No profile">
                               <i class="avatar-presence online"></i>
                           </td>
                           <td>{{ $employee->email }}</td>
@@ -537,7 +537,7 @@
     </div>
     
 
-    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ secure_asset('js/jquery.js') }}"></script>
     <script type="text/javascript">
       $(function(){
         $("#dashboardAdmin").addClass('active');

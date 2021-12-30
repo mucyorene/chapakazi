@@ -60,7 +60,7 @@
         <!--/.container-->
     </section>
   <!--/#contact-page-->
-    <script src="{{ asset('js/jquery.js')}}"></script>
+    <script src="{{ secure_asset('js/jquery.js')}}"></script>
     <script type="text/javascript">
         $(function(){
         $("#contact").addClass('active');
