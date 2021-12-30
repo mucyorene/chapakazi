@@ -84,10 +84,35 @@ class HomeController extends Controller
     }
 
     public function indexSearch($key){
-        $employees = employees::where('firstName','LIKE','%'.$key.'%')
-                            ->orwhere('lastName','LIKE','%'.$key.'%')
-                            ->orwhere('category','LIKE','%'.$key.'%')
-                            ->get();
+        
+        $employees = employees::query()->where(function($query) use ($key){
+            $query->where('firstName','LIKE','%'.$key.'%')
+            ->orwhere('lastName','LIKE','%'.$key.'%')
+            ->orwhere('category','LIKE','%'.$key.'%');
+        })
+        ->whereDoesntHave("recruted")
+        ->get();
+        
+        return view('pages/load_search_results',compact('employees'));
+
+        // foreach ($employees as $key => $value) {
+        //     $checkIf = RecruitedEmployee::where('employeeId','=',$value->id)->count();
+        //     if ($checkIf != null) {
+
+        //         $employees[$key]=[];
+
+        //         return view('pages/load_search_results',compact('employees'));
+        //     }
+        //     else{
+        //         return view('pages/load_search_results',compact('employees'));
+        //     }
+        // }
+
+
+
+
+
+
         // if ($results) {
         //     foreach ($results as $value) {
         //         echo ($value->lastName);
@@ -95,12 +120,14 @@ class HomeController extends Controller
         // }else{
         //     return "Results not found";
         // }
-        return view('pages/load_search_results',compact('employees'));
+        //return view('pages/load_search_results',compact('employees'));
     
     }
 
     public function searchByCategory($category){
-        $employees = employees::where('category','LIKE','%'.$category.'%')->latest()->get();
+        $employees = employees::where('category','LIKE','%'.$category.'%')
+                              ->where('status','=','0')
+                              ->latest()->get();
         // foreach ($categoryList as $value) {
         //     echo $value->firstName;
         // }
@@ -335,12 +362,27 @@ class HomeController extends Controller
     public function mySavedList(){
        
         $employersList = Auth::guard('webemployers')->user()->employees()->with(['employee'])->get();
-        $totalNumber = count($employersList);
+        
+        foreach ($employersList as $value) {
+            $unemployeed = RecruitedEmployee::where('employeeId','=',$value->employee->id)->count();
+            if ($unemployeed != null) {
+                
+                $employersList = [];
+                $totalNumber = 0;
+                 ///return count($employersList);
+                //$employersList = unset($employersList[$key]);
+               return view('pages.recruitingList',compact('employersList','totalNumber'));
+            }else{
+                $totalNumber = count($employersList);
+                return view('pages.recruitingList',compact('employersList','totalNumber'));
+            }
+            
+        }
 
-
+        
         //return Auth::guard('webemployers')->user()->fullNames;
 
-        return view('pages.recruitingList',compact('employersList','totalNumber'));
+        //return view('pages.recruitingList',compact('employersList','totalNumber'));
 
         // $myList = recruiteList::find($employersList)->cart('lastName');
         // dd($myList);
@@ -355,6 +397,15 @@ class HomeController extends Controller
     
     public static function displayNumber(){
         $employersList = Auth::guard('webemployers')->user()->employees()->with(['employee'])->get();
+        foreach ($employersList as $value) {
+            $unemployeed = RecruitedEmployee::where('employeeId','=',$value->employee->id)->count();
+            if ($unemployeed != null) {
+               return "";
+            }
+            else{
+                return count($employersList);
+            }
+        }
         return $totalNumber = count($employersList);
     }
 
@@ -425,7 +476,7 @@ class HomeController extends Controller
 
             //$phones = $findEmployee->phone;
 
-            $phones = "+250784494820";
+            $phones = $findEmployee->id;
             $names = $findEmployee->firstName." ".$findEmployee->lastName;
             $employerNames = Auth::guard('webemployers')->user()->fullNames;
             $employerPhones = Auth::guard('webemployers')->user()->phone;

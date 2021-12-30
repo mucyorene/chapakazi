@@ -1,6 +1,7 @@
 @extends('dashboard.inc.main')
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}" />
+
 <!-- Main Content -->
 <div class="main-content">
   <section class="section">
@@ -84,7 +85,6 @@
 </div>
 
 <script src="{{ asset('js/jquery.js') }}"></script>
-
 <script>
   function deleteEmployee(id,firstName,lastName){
     var needConfirm = confirm("Are you sure, you want to delete "+firstName+" "+lastName);
@@ -137,6 +137,8 @@
 </body>
 <!-- index-->
 
+
+
 <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
 
  <!-- Modal -->
@@ -157,32 +159,36 @@
               <div class="form-group col-md-6">
                 <label>First Name</label>
                 <input type="text" id="firstName" name="firstName" class="form-control" value="{{ old('firstName') }}" required="">
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger error-text firstName-error">
                   @error('firstName') {{ $message }}@enderror
                 </div>
+                <span class="text-danger error-text firstName-error"></span>
               </div>
               <div class="form-group col-md-6">
                 <label>Last Name</label>
                 <input type="text" id="lastName" name="lastName" class="form-control" value="{{ old('lastName') }}" required="">
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger error-text lastname-error">
                   @error('lastName') {{ $message }}@enderror
                 </div>
+                <span class="text-danger error-text lastName-error"></span>
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-md-6 mb-0">
                 <label>Experience</label>
                 <input type="number" name="experience" id="littleBiography" class="form-control" value="{{ old('experience') }}" required="">
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger error-text experience-error">
                   @error('experience') {{ $message }}@enderror
                 </div>
+                <span class="text-danger error-text experience-error"></span>
               </div>
               <div class="form-group col-md-6">
                 <label>Date of birth</label>
                 <input type="date" name="dateOfBirth" id="dateOfBirth" value="{{ old('dateOfBirth') }}" class="form-control" required="">
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger error-text dob-error">
                   @error('dateOfBirth') {{ $message }}@enderror
                 </div>
+                <span class="text-danger error-text dateOfBirth-error"></span>
               </div>
             </div>
             <div class="form-row">
@@ -192,25 +198,28 @@
                   <option value="Full-Time">Full-Time</option>
                   <option value="Part-Time">Part-Time</option>
                 </select>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger error-text availability-error">
                   @error('dateOfBirth') {{ $message }}@enderror
                 </div>
+                <span class="text-danger error-text availability-error"></span>
               </div>
               <div class="form-group col-md-6">
                 <label>Rate Per Day</label>
                 <input type="number" name="ratePerDay" id="ratePerDay" value="{{ old('availability') }}" class="form-control" required="">
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger error-text   -error">
                   @error('ratePerDay') {{ $message }}@enderror
                 </div>
+                <span class="text-danger error-text ratePerDay-error"></span>
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label>Identification Number</label>
                 <input type="number" name="identificationNumber" id="identificationNumber" class="form-control"  value="{{ old('identificationNumber') }}" required="">
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger error-text identification-error">
                   @error('identificationNumber') {{ $message }}@enderror
                 </div>
+                <span class="text-danger error-text identificationNumber-error"></span>
               </div>
               <div class="form-group col-md-6">
                 <label>Gender</label> 
@@ -220,9 +229,11 @@
                   <option value="Female">Female</option>
                 </select>
                 
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger error-text gender-error">
                   @error('email') {{ $message }}@enderror
                 </div>
+
+                <span class="text-danger error-text gender-error"></span>
               </div>
             </div>
 
@@ -239,14 +250,16 @@
                   <option value="Gatekeepers">Gate keepers</option>
                   <option value="Gardeners">Gardeners</option>
                 </select>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback text-danger error-text category-error">
                   @error('proffession') {{ $message }}@enderror
                 </div>
+                <span class="text-danger error-text category-error"></span>
               </div>
 
               <div class="form-group col-md-6">
                 <label>Phone</label>
                   <input type="text" class="form-control" name="phone">
+                  <span class="text-danger error-text phone-error"></span>
               </div>
 
               <div class="form-group col-md-12">
@@ -255,6 +268,7 @@
                   <input type="file" class="custom-file-input" name="formProfile" id="formProfile">
                   <label class="custom-file-label" for="customFile">Choose file</label>
                 </div>
+                <span class="text-danger error-text formProfile-error"></span>
               </div>
             </div>
 
@@ -269,12 +283,16 @@
   </div>
 </div>
 
+<!-- Laravel Javascript Validation -->
+{{-- <script type="text/javascript" src="{{ asset('jsValidator/vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+{{ JsValidator::formRequest('App\Http\Requests\MyFormRequest') }} --}}
 <script>
 
   $(document).ready(function(){
     $("#feedbacks").hide()
     $("#formSubmit").on("submit",function(e){
       e.preventDefault();
+
       $.ajax({
         method:'POST',
         url:this.action,
@@ -285,16 +303,30 @@
         cache:false,
 
         beforeSend:function () {
+
+          $(document).find('span.error-text').text('');
           $("#employeeSaving").text("Saving");
+
         },
         success: function(response){
-
-          console.log(response.success)
-          $("#employeeSaving").text("Save");
-          $("#formSubmit").trigger('reset');
-          $("#feedbacks").show()
-          $("#feedbacks").addClass("alert alert-success")
-          $("#feedbacks").html(response.success)
+          if (response.status == 0) {
+            
+            $.each(response.error,function(prefix, val){
+              //console.log(response.error)
+              //console.log($('span.'+prefix+'-error').text(val[0]))
+              $('span.'+prefix+'-error').text(val[0]);
+              $("#employeeSaving").text("Save");
+            });
+          }else{
+            $("#formSubmit").trigger('reset');
+            console.log(response.success)
+            $("#employeeSaving").text("Save");
+            $("#formSubmit").trigger('reset');
+            $("#feedbacks").show()
+            $("#feedbacks").addClass("alert alert-success")
+            $("#feedbacks").html(response.success)
+          }
+          
 
         },error: function(error){
           console.log(error)

@@ -20,4 +20,8 @@ class employees extends Model
     public function myRatings(){
         return $this->hasMany(Ratings::class,'employeeId');
     }
+
+    public function recruted(){
+        return $this->hasMany(RecruitedEmployee::class,"employeeId");
+    }
 }

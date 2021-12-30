@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\employees;
 use App\Models\Employers;
+use Illuminate\Support\Facades\Validator;
 
 class MainController extends Controller
 {
@@ -51,46 +52,54 @@ class MainController extends Controller
     }
     public function saveEmployee(Request $request)
     {
-        $request->validate([
-            'identificationNumber'=>'required|min:16|max:16',
-            'firstName'=>'required',
-            'lastName'=>'required',
-            'experience'=>'required',
-            'dateOfBirth'=>'required',
-            'availability'=>'required',
-            'ratePerDay'=>'required',
-            'category'=>'required',
-            'gender'=>'required',
-            'phone'=>'required',
-            'formProfile'=>'required'
-        ]);
         
-        $image = $request->file('formProfile');
-        $new_name = rand().'.'.$image->getClientOriginalExtension();
-        $image->move(public_path('profiles'),$new_name);
+        $validator = Validator::make(
+            $request->all(),[
+                'identificationNumber'=>'required|min:16|max:16',
+                'firstName'=>'required',
+                'lastName'=>'required',
+                'experience'=>'required',
+                'dateOfBirth'=>'required',
+                'availability'=>'required',
+                'ratePerDay'=>'required',
+                'category'=>'required',
+                'gender'=>'required',
+                'phone'=>'required',
+                'formProfile'=>'required'
+            ]
+        );
+        if (!$validator->passes()) {
+            return response()->json(['status'=>0, 'error'=>$validator->errors()->toArray()]);
+        }else{
 
-        $newEmp = new employees();
+            $image = $request->file('formProfile');
+            $new_name = rand().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('profiles'),$new_name);
 
-        $newEmp->identificationNumber = $request->input("identificationNumber");
-        $newEmp->firstName = $request->input("firstName");
-        $newEmp->lastName = $request->input("lastName");
-        $newEmp->experience = $request->input("experience");
-        $newEmp->dob = $request->input("dateOfBirth");
-        $newEmp->availability = $request->input("availability");
-        $newEmp->ratePerDay = $request->input("ratePerDay");
-        $newEmp->category = $request->input("category");
-        $newEmp->gender = $request->input("gender");
-        $newEmp->phone = $request->input("phone");
+            $newEmp = new employees();
 
-        //File
-        $newEmp->profile = $new_name;
+            $newEmp->identificationNumber = $request->input("identificationNumber");
+            $newEmp->firstName = $request->input("firstName");
+            $newEmp->lastName = $request->input("lastName");
+            $newEmp->experience = $request->input("experience");
+            $newEmp->dob = $request->input("dateOfBirth");
+            $newEmp->availability = $request->input("availability");
+            $newEmp->ratePerDay = $request->input("ratePerDay");
+            $newEmp->category = $request->input("category");
+            $newEmp->gender = $request->input("gender");
+            $newEmp->phone = $request->input("phone");
 
-        $newEmp->status = 0;
+            //File
+            $newEmp->profile = $new_name;
 
-        $newEmp->save();
-        //return back()->with("success","Thanks for registering data");
+            $newEmp->status = 0;
 
-        return response()->json(['success'=>'Employee Added successfully']);
+            $newEmp->save();
+            //return back()->with("success","Thanks for registering data");
+
+            return response()->json(['status'=>'1','success'=>'Employee Added successfully']);
+
+        }
     }
 
     public function removeEmployee($id){
