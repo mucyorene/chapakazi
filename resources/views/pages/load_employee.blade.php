@@ -29,7 +29,7 @@
                         <button type="submit" class="btn btn-success btn-sm btn-flat">Recruite</button>
                     </form> 
                     @else
-                        <button href="/authentication" id="recruite" class="btn btn-info btn-sm btn-flat"><strong>Recruite</strong></button>
+                        <button id="recruitess" class="btn btn-info btn-sm btn-flat"><strong>Recruite</strong></button>
                     @endif
                     
                     {{-- <a href="casual/{{$employee->id}}" class="btn btn-success btn-sm btn-flat">Add to list</a> --}}
@@ -47,3 +47,12 @@
     No Employee registered yet !
     </div>
 @endif
+<script src="{{ asset('js/jquery.js') }}"></script>
+<script>
+    $(document).ready(function(){
+        $("#recruitess").click(function(){
+            //alert("Listened")
+            window.top.location = "/authentication";
+        })
+    })
+</script>

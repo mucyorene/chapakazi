@@ -28,7 +28,7 @@
                         <button type="submit" id="loginFirst" class="btn btn-success btn-sm btn-flat">Recruite</button>
                     </form> 
                     @else
-                        <button href="/authentication" id="recruite" class="btn btn-info btn-sm btn-flat"><strong>Recruite</strong></button>
+                        <button id="recruitess" class="btn btn-info btn-sm btn-flat"><strong>Recruite</strong></button>
                     @endif
                     
                     {{-- <a href="casual/{{$employee->id}}" class="btn btn-success btn-sm btn-flat">Add to list</a> --}}
@@ -37,7 +37,7 @@
                 <script src="{{ asset('js/jquery.js') }}"></script>
                 <script>
                     $(document).ready(function(){
-                        $("#recruite").click(function(){
+                        $("#recruitess").click(function(){
                             window.top.location = "/authentication";
                         })
                     })

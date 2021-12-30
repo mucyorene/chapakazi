@@ -109,7 +109,6 @@
       
       <script>
         $(document).ready(function(){
-          $("#loadEmployees").load('/loadEmployee');
           $("#searching").keyup(function(){
             var data = $(this).val();
             if (data != '') {
@@ -137,6 +136,7 @@
 
   <script>
     $(function(){
+        $("#loadEmployees").load('/loadEmployee');
       $("[name=category]").change(function(){
         var empCategory = $("[name=category]:checked").val();
         //alert(category)

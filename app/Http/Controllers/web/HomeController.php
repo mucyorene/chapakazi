@@ -76,8 +76,10 @@ class HomeController extends Controller
         foreach ($rate as $value) {
             $sum += $value->rating;
         }
-        $avg = $sum/count($rate);
-        return number_format($avg,1);
+        if ($sum >0) {
+            $avg = $sum/count($rate);
+            return number_format($avg,1);
+        }      
 
     }
 
