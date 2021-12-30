@@ -9,19 +9,19 @@
   
   <title>@yield('title')</title>
   <!-- General CSS Files -->
-  <link rel="stylesheet" href="{{ secure_asset('dashboard/assets/css/app.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('dashboard/assets/css/app.min.css') }}">
   <!-- Template CSS -->
-  <link rel="stylesheet" href="{{ secure_asset('dashboard/assets/css/style.css')}}">
+  <link rel="stylesheet" href="{{ asset('dashboard/assets/css/style.css')}}">
   {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
-  <link rel="stylesheet" href="{{ secure_asset('dashboard/assets/css/components.css')}}">
+  <link rel="stylesheet" href="{{ asset('dashboard/assets/css/components.css')}}">
   <!-- Custom style CSS -->
-  <link rel="stylesheet" href="{{ secure_asset('dashboard/assets/css/custom.css')}}">
-  <link rel='shortcut icon' type='image/x-icon' href='{{ secure_asset('dashboard/assets/img/favicon.ico')}}' />
+  <link rel="stylesheet" href="{{ asset('dashboard/assets/css/custom.css')}}">
+  <link rel='shortcut icon' type='image/x-icon' href='{{ asset('dashboard/assets/img/favicon.ico')}}' />
   
 
   
-  <link rel="stylesheet" href="{{ secure_asset('bootstrap/css/bootstrap.css') }}">
-  <script src="{{ secure_asset("bootstrap/js/bootstrap.js") }}"></script>
+  <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
+  <script src="{{ asset("bootstrap/js/bootstrap.js") }}"></script>
 
 </head>
 <body>
@@ -40,17 +40,17 @@
       </div>
     </footer>
   <!-- General JS Scripts -->
-  <script src="{{ secure_asset('dashboard/assets/js/app.min.js') }}"></script>
+  <script src="{{ asset('dashboard/assets/js/app.min.js') }}"></script>
   <!-- JS Libraies -->
-  <script src="{{ secure_asset('dashboard/assets/bundles/apexcharts/apexcharts.min.js') }}"></script>
+  <script src="{{ asset('dashboard/assets/bundles/apexcharts/apexcharts.min.js') }}"></script>
   <!-- Page Specific JS File -->
-  <script src="{{ secure_asset('dashboard/assets/js/page/index.js') }}"></script>
+  <script src="{{ asset('dashboard/assets/js/page/index.js') }}"></script>
   <!-- Template JS File -->
-  <script src="{{ secure_asset('dashboard/assets/js/scripts.js') }}"></script>
+  <script src="{{ asset('dashboard/assets/js/scripts.js') }}"></script>
   <!-- Custom JS File -->
-  <script src="{{ secure_asset('dashboard/assets/js/custom.js') }}"></script>
+  <script src="{{ asset('dashboard/assets/js/custom.js') }}"></script>
 
-  <script src="{{ secure_asset('dashboard/assets/bundles/chocolat/dist/js/jquery.chocolat.min.js')}}"></script>
+  <script src="{{ asset('dashboard/assets/bundles/chocolat/dist/js/jquery.chocolat.min.js')}}"></script>
 </body>
 <!-- index.html  21 Nov 2019 03:47:04 GMT -->
 </html>

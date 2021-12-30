@@ -136,7 +136,7 @@
                               <td>{{ $employee->hiredEmployee->littleBiography}}</td>                               
                               <td>{{ $employee->hiredEmployee->email}}</td>                              
                               <td class="avatar avatar mr-2 avatar-xl bg-white">
-                                <img class="img img-fluid" src="{{ secure_asset('profiles/'.$employee->hiredEmployee->profile)}}" alt="">
+                                <img class="img img-fluid" src="{{ asset('profiles/'.$employee->hiredEmployee->profile)}}" alt="">
                               </td>                              
                             </tr>
                         @endforeach
@@ -393,7 +393,7 @@
     </div>
 
 
-    <script src="{{ secure_asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/jquery.js') }}"></script>
     <script type="text/javascript">
       $(function(){
         $("#dashboardUser").addClass('active');

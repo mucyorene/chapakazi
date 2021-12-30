@@ -52,7 +52,7 @@
   </div>
 
   <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-  <script src="{{ secure_asset('js/jquery.js') }}"></script>
+  <script src="{{ asset('js/jquery.js') }}"></script>
   <script>
       $(function(){
           

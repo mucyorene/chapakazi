@@ -1,7 +1,7 @@
 @extends('inc.layouts')
 @section('content')
 
-<link href="{{ secure_asset('css/myCustomer.css')}}" rel="stylesheet" />
+<link href="{{ asset('css/myCustomer.css')}}" rel="stylesheet" />
 
 <style>
     .rating {
@@ -61,7 +61,7 @@
 
               <div class="col-sm-6 hidden-xs animation animated-item-4">
                 <div class="slider-img">
-                  <img src="{{ secure_asset('images/slider/index1.jpg') }}" class="img-responsive">
+                  <img src="{{ asset('images/slider/index1.jpg') }}" class="img-responsive">
                 </div>
               </div>
 
@@ -79,7 +79,7 @@
 
 
 
-  <script src="{{ secure_asset('js/jquery.js') }}"></script>
+  <script src="{{ asset('js/jquery.js') }}"></script>
   <script type="text/javascript">
     $(function(){
       $("#home").addClass('active');
