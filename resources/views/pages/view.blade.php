@@ -58,7 +58,9 @@
                 <img src="{{ asset('profiles/'.$casual->profile)}}" alt="No Image found">
                 
                 @if (Auth::guard('webemployers')->id() > 0)
+
                     {{-- Rating system --}}
+
                   <div class="rating">
                       <input type="radio"  name="rating" value="5" class="id10" id="5"><label for="5">☆</label>
                       <input type="radio" name="rating" value="4" class="id1" id="4"><label for="4">☆</label>
@@ -70,17 +72,27 @@
                   <script>
                     $(function(){
                       $("[name=rating]").change(function(){
-                        var id = $("[name=rating]:checked").val();
-                        alert(id)
+                        var ratings = $("[name=rating]:checked").val();
+                        var employeeId = {{ $casual->id }}
+                        var employerId = {{ Auth::guard('webemployers')->id() }}
+                        $.ajax({
+                          url: '/rateNow/'+ratings+'/'+employeeId+"/"+employerId,
+                          success:function(response){
+                            //console.log(response)
+                            window.location.reload(true);
+                          }
+                        })
                       })
                     });
                   </script>
 
                 @else
                     {{-- Rating system --}}
-                  <div class="rating">
-                      <input type="radio"  name="rating" value="5" id="5"><label for="5"> ☆ </label>
-                  </div>
+                  
+                    viewCasual{{-- Rating system --}} 
+
+                    <div class="rating"> <strong class="text-warning">5</strong>&nbsp;<input type="radio"  name="rating" value="5" id="5"><label for="5"> ☆ </label> </div>
+
                 @endif
                 <div class="row">
                     <div class="col-md-12"><br><br>
@@ -95,7 +107,7 @@
                             </tr>
                             <tr>
                                 <td><strong>Availability: </strong> &nbsp;</td>
-                                <td>{{ $casual->availability}} hours/day</td>
+                                <td>{{ $casual->availability}}</td>
                             </tr>
                             <tr>
                                 <td><strong>Experience: </strong> &nbsp;</td>

@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\employers;
 use Symfony\Component\HttpFoundation\Session\Session;
 use App\Models\Employers as ModelsEmployers;
+use App\Models\Ratings;
 use App\Models\RecruitedEmployee;
 use App\Models\recruiteList;
 use Illuminate\Support\Facades\Session as FacadesSession;
@@ -60,7 +61,19 @@ class HomeController extends Controller
 
     public function loadEmployees(){
         $employees = employees::where('status','=','0')->get();
+        
         return view('pages/load_employee',compact('employees'));
+    }
+
+    public static function rating($employeeId){
+        $sum = 0;
+        $rate = Ratings::where('employeeId','=',$employeeId)->get();
+        foreach ($rate as $value) {
+            $sum += $value->rating;
+        }
+        $avg = $sum/count($rate);
+        return number_format($avg,1);
+
     }
 
     public function indexSearch($key){
@@ -77,6 +90,30 @@ class HomeController extends Controller
         // }
         return view('pages/load_search_results',compact('employees'));
     
+    }
+
+    public function searchByCategory($category){
+        $employees = employees::where('category','LIKE','%'.$category.'%')->latest()->get();
+        // foreach ($categoryList as $value) {
+        //     echo $value->firstName;
+        // }
+        return view('pages/load_category_employee',compact('employees'));
+    }
+
+    public function rateEmployee($rating, $employeeId, $employerId){
+        $saveRating = new Ratings();
+        $saveRating->rating = $rating;
+        $saveRating->employerId = $employerId;
+        $saveRating->employeeId = $employeeId;
+
+        $check = Ratings::where('employerId','=',$employerId)
+                        ->where('employeeId','=',$employeeId)
+                        ->count();
+        if ($check < 1) {
+           $saveRating->save();
+           return response()->json('Rated successfully');
+        }
+        return response()->json('You already rated this employee');
     }
 
     public function myCasuals(){      
@@ -204,31 +241,31 @@ class HomeController extends Controller
 
         $newEmployer->save();
 
-        $receiver=$phones;
-        $sender="+250788890071";
-        $mssg="Hello ".$names."You are welcome, Thanks for signing up at CHAPAKAZI, Better casuals, are waiting for you!";
+        // $receiver=$phones;
+        // $sender="+250788890071";
+        // $mssg="Hello ".$names."You are welcome, Thanks for signing up at CHAPAKAZI, Better casuals, are waiting for you!";
 
-        $data=array(
-                "sender"=>$sender,
-                "recipients"=>$receiver,
-                "message"=>$mssg,
-            );
+        // $data=array(
+        //         "sender"=>$sender,
+        //         "recipients"=>$receiver,
+        //         "message"=>$mssg,
+        //     );
 
-        $url="https://www.intouchsms.co.rw/api/sendsms/.json";
-        $data=http_build_query($data);
-        $username="renemucyo";
-        $password="mucyo12345";
+        // $url="https://www.intouchsms.co.rw/api/sendsms/.json";
+        // $data=http_build_query($data);
+        // $username="renemucyo";
+        // $password="mucyo12345";
 
-        $ch=curl_init();
-        curl_setopt($ch,CURLOPT_URL,$url);
-        curl_setopt($ch,CURLOPT_USERPWD,$username.":".$password);
-        curl_setopt($ch,CURLOPT_POST,true);
-        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-        curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,0);
-        curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
-        $result=curl_exec($ch);
-        $httpcode=curl_getinfo($ch,CURLINFO_HTTP_CODE);
-        curl_close($ch);
+        // $ch=curl_init();
+        // curl_setopt($ch,CURLOPT_URL,$url);
+        // curl_setopt($ch,CURLOPT_USERPWD,$username.":".$password);
+        // curl_setopt($ch,CURLOPT_POST,true);
+        // curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+        // curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,0);
+        // curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
+        // $result=curl_exec($ch);
+        // $httpcode=curl_getinfo($ch,CURLINFO_HTTP_CODE);
+        // curl_close($ch);
 
         if ($newEmployer) {
            return redirect('/authentication');
@@ -343,8 +380,18 @@ class HomeController extends Controller
         $addCart->employerId = $empId;
         $addCart->empId = $casualId;
         $addCart->status = 'pending';
-        $addCart->save();
-        return redirect('/');
+
+        $check = recruiteList::where('employerId','=',$empId)
+                            ->where('empId','=',$casualId)
+                            ->count();
+        //return $check;
+        if ($check == null) {
+            $addCart->save();
+            return redirect('/');   
+        }
+
+        return redirect('/savedList');
+        
     }
 
     public function saveRecruited(){

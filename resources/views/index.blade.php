@@ -1,6 +1,8 @@
 @extends('inc.layouts')
 @section('content')
 
+<link href="{{ asset('css/myCustomer.css')}}" rel="stylesheet" />
+
 <style>
     .rating {
       display: flex;
@@ -15,7 +17,7 @@
   .rating>label {
     position: relative;
     width: 0.4em;
-    font-size: 2vw;
+    font-size: 1.1vw;
     color: #FFD600;
     cursor: pointer;
   }
@@ -87,8 +89,51 @@
 
               <form class="form">
               <input type="text" name="" placeholder="Type your search !" class="form-control text-center" id="searching">
-              <strong class="text-danger">Categories</strong>
-              
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                      <div class="selectgroup selectgroup-pills">
+                          <label class="selectgroup-item">
+                            <input type="radio" name="category" value="All" class="selectgroup-input" checked>
+                            <span class="selectgroup-button">All</span>
+                          </label>
+
+                          <label class="selectgroup-item">
+                          <input type="radio" name="category" value="Plumber" class="selectgroup-input">
+                          <span class="selectgroup-button">Plumber</span>
+                          </label>
+                          <label class="selectgroup-item">
+                          <input type="radio" name="category" value="Electricians" class="selectgroup-input">
+                          <span class="selectgroup-button">Electricians</span>
+                          </label>
+                          <label class="selectgroup-item">
+                          <input type="radio" name="category" value="Mechanics" class="selectgroup-input">
+                          <span class="selectgroup-button">Mechanics</span>
+                          </label>
+                          <label class="selectgroup-item">
+                          <input type="radio" name="category" value="HouseMaid" class="selectgroup-input">
+                          <span class="selectgroup-button">House Maid</span>
+                          </label>
+                          <label class="selectgroup-item">
+                          <input type="radio" name="category" value="BabySeaters" class="selectgroup-input">
+                          <span class="selectgroup-button">Baby Seaters</span>
+                          </label>
+                          <label class="selectgroup-item">
+                          <input type="radio" name="category" value="Cleaners" class="selectgroup-input">
+                          <span class="selectgroup-button">Cleaners</span>
+                          </label>
+                          <label class="selectgroup-item">
+                          <input type="radio" name="category" value="Gatekeepers" class="selectgroup-input">
+                          <span class="selectgroup-button">Gate keepers</span>
+                          </label>
+                          <label class="selectgroup-item">
+                            <input type="radio" name="category" value="Gardeners" class="selectgroup-input">
+                            <span class="selectgroup-button">Gardeners</span>
+                            </label>
+                      </div>
+                  </div>
+                </div>
+              </div>
               </form>
           </div>
           
@@ -190,6 +235,22 @@
     });
   </script>
 
+  <script>
+    $(function(){
+      $("[name=category]").change(function(){
+        var empCategory = $("[name=category]:checked").val();
+        //alert(category)
+        if(empCategory == "All"){
+          $("#loadEmployees").load('/loadEmployee');
+        }else if (empCategory != '') {
+          $("#loadEmployees").load('/chapa/searching/'+empCategory);
+        }else{
+          
+        }     
+
+      })
+    });
+  </script>
 
 <form>
   <script src="https://checkout.flutterwave.com/v3.js"></script>

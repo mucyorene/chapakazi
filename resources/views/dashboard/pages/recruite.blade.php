@@ -233,12 +233,11 @@
                   <option value="Plumber">Plumber</option>
                   <option value="Electricians">Electricians</option>
                   <option value="Mechanics">Mechanics</option>
-                  <option value="House Maid">House Maid</option>
-                  <option value="Baby Seaters">Baby Seaters</option>
-                  <option value="Baby Seaters">Cleaners</option>
-                  <option value="Baby Seaters">Gate keepers</option>
-                  <option value="Baby Seaters">Gardeners</option>
-
+                  <option value="HouseMaid">House Maid</option>
+                  <option value="BabySeaters">Baby Seaters</option>
+                  <option value="Cleaners">Cleaners</option>
+                  <option value="Gatekeepers">Gate keepers</option>
+                  <option value="Gardeners">Gardeners</option>
                 </select>
                 <div class="invalid-feedback">
                   @error('proffession') {{ $message }}@enderror

@@ -36,7 +36,15 @@ Route::get('/viewCasual/{id}',[HomeController::class,'showCasual']);
 Route::post('/postAdmin',[HomeController::class,'postAdmin'])->name("postAdmin");
 
 Route::get('/loadEmployee',[HomeController::class,'loadEmployees']);
+
+//Search
 Route::get('/chapa/searching/{search}',[HomeController::class,'indexSearch']);
+Route::get('/chapa/search/category/{category}',[HomeController::class,'searchByCategory']);
+
+//Rating system
+
+Route::get('/rateNow/{ratings}/{employeeId}/{employerId}',[HomeController::class,'rateEmployee']);
+Route::get('/rate/{id}',[HomeController::class, 'rating']);
 
 // Route::get('/loadEmployee', function () {
 //     return view('pages/load_employee');

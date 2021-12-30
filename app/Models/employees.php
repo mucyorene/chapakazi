@@ -16,4 +16,8 @@ class employees extends Model
     public function employers(){
         return $this->belongsToMany(Employers::class,'recruite_lists','employerId','empId ')->withPivot('created_at','updated_at','status');
     }
+
+    public function myRatings(){
+        return $this->hasMany(Ratings::class,'employeeId');
+    }
 }

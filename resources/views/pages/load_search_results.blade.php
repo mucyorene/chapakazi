@@ -2,7 +2,7 @@
     <div class="row gy-4">
         <!-- Button trigger modal -->
         @foreach ($employees as $employee)
-        <div class="col-lg-4 col-md-6" >
+        <div class="col-lg-4 col-md-6">
             <div class="member">
             <img src="profiles/{{ $employee->profile}}" alt="">
                 {{-- Rating system --}}

@@ -8,7 +8,7 @@
             <img src="profiles/{{ $employee->profile}}" alt="">
                 {{-- Rating system --}}
             <div class="rating">
-                <input type="radio"  name="rating" value="5" id="5"><label for="5"> ☆ </label>
+                <small class="text-warning">{{ App\Http\Controllers\web\HomeController::rating($employee->id) }}</small>&nbsp; &nbsp;<input type="radio"  name="rating" value="5" id="5"><label for="5"> ☆ </label>   
             </div>
 
             <h4 id="viewEmployee">{{ $employee->firstName}} {{ $employee->lastName}}</h4>
