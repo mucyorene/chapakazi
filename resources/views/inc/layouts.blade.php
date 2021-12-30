@@ -8,16 +8,16 @@
   <title>Capakazi</title>
 
   <!-- Bootstrap -->
-  <link href="{{ secure_asset('css/bootstrap.min.css')}}" rel="stylesheet">
-  <link rel="stylesheet" href="{{ secure_asset('assets/css/font-awesome.min.css') }}">
-  <link rel="stylesheet" href="{{ secure_asset('css/animate.css') }}">
-  <link href="{{ secure_asset('css/prettyPhoto.css')}}" rel="stylesheet">
-  <link href="{{ secure_asset('css/style.css')}}" rel="stylesheet" />
-  {{-- <link rel="stylesheet" href="{{ secure_asset('assets/vendor/css/style.css') }}"> --}}
+  <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
+  <link href="{{ asset('css/prettyPhoto.css')}}" rel="stylesheet">
+  <link href="{{ asset('css/style.css')}}" rel="stylesheet" />
+  {{-- <link rel="stylesheet" href="{{ asset('assets/vendor/css/style.css') }}"> --}}
 
   
-<link rel="stylesheet" href="{{ secure_asset('bootstrap/css/bootstrap.css') }}">
-<script src="{{ secure_asset("bootstrap/js/bootstrap.js") }}"></script>
+<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
+<script src="{{ asset("bootstrap/js/bootstrap.js") }}"></script>
 
 </head>
 
@@ -38,10 +38,10 @@
 </html>
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="{{ secure_asset('js/jquery-2.1.1.min.js') }}"></script>
+  <script src="{{ asset('js/jquery-2.1.1.min.js') }}"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="{{ secure_asset('js/bootstrap.min.js')}}"></script>
-  <script src="{{ secure_asset('js/jquery.prettyPhoto.js') }}"></script>
-  <script src="{{ secure_asset('js/jquery.isotope.min.js') }}"></script>
-  <script src="{{ secure_asset('js/wow.min.js')}}"></script>
-  <script src="{{ secure_asset('js/functions.js') }}"></script>
+  <script src="{{ asset('js/bootstrap.min.js')}}"></script>
+  <script src="{{ asset('js/jquery.prettyPhoto.js') }}"></script>
+  <script src="{{ asset('js/jquery.isotope.min.js') }}"></script>
+  <script src="{{ asset('js/wow.min.js')}}"></script>
+  <script src="{{ asset('js/functions.js') }}"></script>

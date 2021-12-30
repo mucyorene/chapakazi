@@ -1,7 +1,7 @@
 @extends('inc.layouts')
 @section('content')
 
-<link href="{{ asset('css/myCustomer.css')}}" rel="stylesheet" />
+<link href="{{ asset('public/css/myCustomer.css')}}" rel="stylesheet" />
 
 <style>
     .rating {
