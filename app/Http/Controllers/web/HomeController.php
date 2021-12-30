@@ -44,6 +44,10 @@ class HomeController extends Controller
     public function userRegister(){
         return view("pages.register");
     }
+    
+    public function employeePage(){
+        return view('pages/employeePage');
+    }
 
     public function registerAdmin(){
         return view("pages/regAdmin");
@@ -64,6 +68,7 @@ class HomeController extends Controller
         
         return view('pages/load_employee',compact('employees'));
     }
+
 
     public static function rating($employeeId){
         $sum = 0;
@@ -387,7 +392,7 @@ class HomeController extends Controller
         //return $check;
         if ($check == null) {
             $addCart->save();
-            return redirect('/');   
+            return redirect('/eRecruite');   
         }
 
         return redirect('/savedList');

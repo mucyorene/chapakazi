@@ -32,6 +32,7 @@ Route::get('/contact',[HomeController::class, 'contact']);
 
 Route::get('/adminRegisteration',[HomeController::class,'registerAdmin']);
 Route::get('/viewCasual/{id}',[HomeController::class,'showCasual']);
+Route::get('/eRecruite',[HomeController::class,'employeePage']);
 
 Route::post('/postAdmin',[HomeController::class,'postAdmin'])->name("postAdmin");
 
