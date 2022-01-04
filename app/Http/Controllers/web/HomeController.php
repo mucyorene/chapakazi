@@ -142,20 +142,20 @@ class HomeController extends Controller
         ->whereDoesntHave("recruted")
         ->get();
 
-        return view('pages/load_search_results',compact('employees'));
+        //return view('pages/load_search_results',compact('employees'));
 
-        // foreach ($employees as $key => $value) {
-        //     $checkIf = RecruitedEmployee::where('employeeId','=',$value->id)->count();
-        //     if ($checkIf != null) {
+        foreach ($employees as $key => $value) {
+            $checkIf = RecruitedEmployee::where('employeeId','=',$value->id)->count();
+            if ($checkIf != null) {
 
-        //         $employees[$key]=[];
+                $employees[$key]=[];
 
-        //         return view('pages/load_search_results',compact('employees'));
-        //     }
-        //     else{
-        //         return view('pages/load_search_results',compact('employees'));
-        //     }
-        // }
+                return view('pages/load_search_results',compact('employees'));
+            }
+            else{
+                return view('pages/load_search_results',compact('employees'));
+            }
+        }
 
 
 
@@ -536,31 +536,31 @@ class HomeController extends Controller
 
             //Calling SMS function
 
-            $receiver=$phones;
-                $sender="+250788890071";
-                $mssg="Hello ".$names." You're hired by ".$employerNames.", call employer at: ".$employerPhones;
+            // $receiver=$phones;
+            //     $sender="+250788890071";
+            //     $mssg="Hello ".$names." You're hired by ".$employerNames.", call employer at: ".$employerPhones;
 
-                $data=array(
-                        "sender"=>$sender,
-                        "recipients"=>$receiver,
-                        "message"=>$mssg,
-                    );
+            //     $data=array(
+            //             "sender"=>$sender,
+            //             "recipients"=>$receiver,
+            //             "message"=>$mssg,
+            //         );
 
-                $url="https://www.intouchsms.co.rw/api/sendsms/.json";
-                $data=http_build_query($data);
-                $username="renemucyo";
-                $password="mucyo12345";
+            //     $url="https://www.intouchsms.co.rw/api/sendsms/.json";
+            //     $data=http_build_query($data);
+            //     $username="renemucyo";
+            //     $password="mucyo12345";
 
-                $ch=curl_init();
-                curl_setopt($ch,CURLOPT_URL,$url);
-                curl_setopt($ch,CURLOPT_USERPWD,$username.":".$password);
-                curl_setopt($ch,CURLOPT_POST,true);
-                curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-                curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,0);
-                curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
-                $result=curl_exec($ch);
-                $httpcode=curl_getinfo($ch,CURLINFO_HTTP_CODE);
-                curl_close($ch);
+            //     $ch=curl_init();
+            //     curl_setopt($ch,CURLOPT_URL,$url);
+            //     curl_setopt($ch,CURLOPT_USERPWD,$username.":".$password);
+            //     curl_setopt($ch,CURLOPT_POST,true);
+            //     curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+            //     curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,0);
+            //     curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
+            //     $result=curl_exec($ch);
+            //     $httpcode=curl_getinfo($ch,CURLINFO_HTTP_CODE);
+            //     curl_close($ch);
 
             $findEmployee->update();
 
