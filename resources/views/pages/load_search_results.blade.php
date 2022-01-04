@@ -25,10 +25,10 @@
                         @csrf
                         <input type="hidden" name="employersId" value="{{ Auth::guard('webemployers')->id()}}">
                         <input type="hidden" name="employeeId" value="{{ $employee->id }}">
-                        <button type="submit" id="loginFirst" class="btn btn-success btn-sm btn-flat">Recruite</button>
+                        <button type="submit" id="loginFirst" style="background-color:#1BBD36;" class="btn btn-sm btn-flat">Recruite</button>
                     </form> 
                     @else
-                        <button href="/authentication" id="recruitess" class="btn btn-info btn-sm btn-flat"><strong>Recruite</strong></button>
+                        <button href="/authentication" style="background-color:#1BBD36;" id="recruitess" class="btn btn-sm btn-flat"><strong>Recruite</strong></button>
                     @endif
                     
                     {{-- <a href="casual/{{$employee->id}}" class="btn btn-success btn-sm btn-flat">Add to list</a> --}}
@@ -49,7 +49,7 @@
         @endforeach
     </div> 
 @else
-    <div class="alert alert-danger">
+    <div class="alert alert-success">
         Result not found
     </div>
 @endif

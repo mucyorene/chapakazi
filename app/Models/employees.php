@@ -9,8 +9,8 @@ class employees extends Model
 {
     use HasFactory;
 
-    public function carts(){
-        return $this->belongsTo(recruiteList::class);
+    public function recruitedPending(){
+        return $this->hasMany(recruiteList::class, 'empId');
     }
 
     public function employers(){

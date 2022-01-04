@@ -16,6 +16,6 @@ class recruiteList extends Model
 
     //Employers not used
     public function employers(){
-        return $this->belongsTo(Employers::class,"empId");
+        return $this->belongsTo(Employers::class,"employerId");
     }
 }

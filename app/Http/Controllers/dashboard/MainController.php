@@ -3,10 +3,15 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admins;
 use Illuminate\Http\Request;
 use App\Models\employees;
 use App\Models\Employers;
+use App\Models\recruiteList;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class MainController extends Controller
 {
@@ -26,6 +31,56 @@ class MainController extends Controller
         return view("dashboard.index", compact('data','totalEmployers','totalHired','totalEmployee','totalIncome'));
 
     }
+    public function updateRequestStatus($id){
+        $affected = DB::table('recruite_lists')
+              ->where('employerId', $id)
+              ->update(['status' => 'confirmed']);
+        return response()->json(['status'=>'Updated successfully']);
+    }
+    public function updateProfile(Request $request, $id){
+        $validator = Validator::make($request->all(),[
+            'names'=>'required|max:50|min:3',
+            'email'=>'required|email',
+            'username'=>'min:3',
+        ]);
+
+        if (!$validator->passes()) {
+            return response()->json(['status'=>0, 'error'=>$validator->errors()->toArray()]);
+        }else{
+
+            if ($request->input('adminProfile')) {
+
+                $image = $request->file('adminProfile');
+                $new_name = rand().'.'.$image->getClientOriginalExtension();
+                $image->move(public_path('profiles'),$new_name);
+
+                $update = Admins::find($id);
+                $update->names = $request->input('names');
+                $update->email = $request->input('email');
+                $update->username = $request->input('username');
+                $update->update();
+
+                return response()->json(['status'=>1, 'success'=>'Your profile updated successfully']);
+
+            }else{
+
+
+                $update = Admins::find($id);
+                $update->names = $request->input('names');
+                $update->email = $request->input('email');
+                $update->username = $request->input('username');
+
+                $update->update();
+
+                return response()->json(['status'=>1, 'success'=>'Your profile updated successfully']);
+            }
+
+
+
+        }
+
+
+    }
     public function systemCasuals(){
 
         $data = employees::where('status','=','1')->latest()->get();
@@ -33,6 +88,11 @@ class MainController extends Controller
         // foreach ($allCasuals as $value) {
         //    echo $value->firstName;
         // }
+    }
+
+    public function adminProfile(){
+        $userAdmin = Auth::guard('webadmins')->user();
+        return view("dashboard/pages/adminProfile",compact('userAdmin'));
     }
 
     public function systemEmployers(){
@@ -45,14 +105,14 @@ class MainController extends Controller
         $data = employees::all();
         return view("dashboard/pages/recruite")->with('data', $data);
     }
-    
+
     public function registerEmp()
     {
        return view("dashboard/pages/registerEmployee");
     }
     public function saveEmployee(Request $request)
     {
-        
+
         $validator = Validator::make(
             $request->all(),[
                 'identificationNumber'=>'required|min:16|max:16',
@@ -108,10 +168,19 @@ class MainController extends Controller
         return back()->with('success', 'Employee removed successfully');
     }
 
+    public function requestedEmployees(){
+
+        $data = recruiteList::all();
+        // foreach ($maps as $value) {
+        //    return $value->employee->firstName;
+        // }
+        return view('dashboard/pages/requestedEmployee',compact('data'));
+    }
+
     public function deleteEmployer($id){
         $toDelete = Employers::find($id);
         $toDelete->delete();
-        return response()->json('Deletion Success');
+        return back();
     }
     public function deleteAllEmployers(){
         $deleteEmployers = Employers::truncate();

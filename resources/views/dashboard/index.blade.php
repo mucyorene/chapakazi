@@ -232,13 +232,13 @@
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
-    
+
                     @if (session('danger'))
                         <div class="alert alert-danger">
                           {{session('danger')}}
                         </div>
                     @endif
-                  
+
                     <table class="table table-striped table-hover" id="tableExport">
                       <thead>
                         <tr>
@@ -270,7 +270,7 @@
                           </td>
                           <td>{{ $employee->email }}</td>
                           <td>
-                            
+
                             <div class="dropdown d-inline">
                               <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -279,10 +279,10 @@
                               <div class="dropdown-menu">
                                 <a class="dropdown-item has-icon" href="#"><i class="fas fa-th"></i>View</a>
                                 <a class="dropdown-item has-icon text-success" href="#"><i class="far fa-edit"></i>Edit</a>
-                                <a class="dropdown-item has-icon text-danger" onclick="deleteEmployee('{{ $employee->id }}','{{ $employee->firstName }}','{{$employee->lastName}}')" id="delEmployee" href="#"><i class="fas fa-trash"></i> Delete</a>                           
+                                <a class="dropdown-item has-icon text-danger" onclick="deleteEmployee('{{ $employee->id }}','{{ $employee->firstName }}','{{$employee->lastName}}')" id="delEmployee" href="#"><i class="fas fa-trash"></i> Delete</a>
                               </div>
                             </div>
-    
+
                           </td>
                         </tr>
                         @endforeach
@@ -535,7 +535,7 @@
           </div>
         </div>
     </div>
-    
+
 
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script type="text/javascript">
@@ -546,4 +546,3 @@
 
 
 @endsection
-      

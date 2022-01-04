@@ -25,7 +25,7 @@
                       {{session('danger')}}
                     </div>
                 @endif
-              
+
                 <table class="table table-striped table-hover" id="tableExport">
                   <thead>
                     <tr>
@@ -57,7 +57,7 @@
                       </td>
                       <td>{{ $employee->email }}</td>
                       <td>
-                        
+
                         <div class="dropdown d-inline">
                           <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -66,7 +66,7 @@
                           <div class="dropdown-menu">
                             <a class="dropdown-item has-icon" href="#"><i class="fas fa-th"></i>View</a>
                             <a class="dropdown-item has-icon text-success" href="#"><i class="far fa-edit"></i>Edit</a>
-                            <a class="dropdown-item has-icon text-danger" onclick="deleteEmployee('{{ $employee->id }}','{{ $employee->firstName }}','{{$employee->lastName}}')" id="delEmployee" href="#"><i class="fas fa-trash"></i> Delete</a>                           
+                            <a class="dropdown-item has-icon text-danger" onclick="deleteEmployee('{{ $employee->id }}','{{ $employee->firstName }}','{{$employee->lastName}}')" id="delEmployee" href="#"><i class="fas fa-trash"></i> Delete</a>
                           </div>
                         </div>
 
@@ -99,7 +99,7 @@
   //   $("#registerEmployee").click(function(){
   //     window.location = "{{ route('admin.addRegister') }}";
   //   });
-    
+
   //   $("#recruites").addClass('active');
   // });
 </script>
@@ -150,7 +150,7 @@
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
       </div>
       <div class="modal-body"><div id="feedbacks"></div>
-        
+
         <form class="form" id="formSubmit" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate="" action="{{route('admin.postEmployees')}}">
          @csrf
           <div class="card-body">
@@ -222,13 +222,13 @@
                 <span class="text-danger error-text identificationNumber-error"></span>
               </div>
               <div class="form-group col-md-6">
-                <label>Gender</label> 
+                <label>Gender</label>
 
                 <select name="gender" id="email" class="form-control">
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </select>
-                
+
                 <div class="invalid-feedback text-danger error-text gender-error">
                   @error('email') {{ $message }}@enderror
                 </div>
@@ -249,6 +249,7 @@
                   <option value="Cleaners">Cleaners</option>
                   <option value="Gatekeepers">Gate keepers</option>
                   <option value="Gardeners">Gardeners</option>
+                  <option value="Others">Others</option>
                 </select>
                 <div class="invalid-feedback text-danger error-text category-error">
                   @error('proffession') {{ $message }}@enderror
@@ -310,7 +311,7 @@
         },
         success: function(response){
           if (response.status == 0) {
-            
+
             $.each(response.error,function(prefix, val){
               //console.log(response.error)
               //console.log($('span.'+prefix+'-error').text(val[0]))
@@ -326,7 +327,7 @@
             $("#feedbacks").addClass("alert alert-success")
             $("#feedbacks").html(response.success)
           }
-          
+
 
         },error: function(error){
           console.log(error)
@@ -334,7 +335,7 @@
           $("#feedbacks").show()
           $("#feedbacks").addClass("alert alert-danger")
 
-          
+
           // $(".toBe").hide();
           // $("#exampleModalLabel2").html("Can't save data, check inputs like email or unfilled");
           // $("#exampleModalLabel2").show();
@@ -344,7 +345,7 @@
   });
 </script>
 
-  
+
 <script src="{{ asset('js/jquery.js') }}"></script>
 <script type="text/javascript">
   $(function(){

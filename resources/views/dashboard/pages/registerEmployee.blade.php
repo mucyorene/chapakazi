@@ -10,7 +10,7 @@
     <div class="section-body">
       <div class="row">
         <div class="col-12">
-            
+
             <div class="col-12 col-md-6 col-lg-6">
                 <div class="card">
                     <div class="card-header">
@@ -36,7 +36,7 @@
     $("#registerEmployee").click(function(){
       window.location = "";
     });
-    
+
     $("#recruites").addClass('active');
   });
 </script>
@@ -92,8 +92,8 @@
         </div>
         </div>
     </div>
-    
-    
+
+
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script type="text/javascript">
       $(function(){

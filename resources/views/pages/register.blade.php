@@ -22,33 +22,35 @@
             <span class="text-danger">@error('username') {{ $message }}@enderror</span>
         <input type="password" id="password" class="fadeIn third" name="password" placeholder="Your password"><br>
             <span class="text-danger">@error('password') {{ $message }}@enderror</span><br>
+        <textarea name="biography" placeholder="Your biography" id="" class="fadeIn third form-control" cols="30" rows="10" style="color:black;"></textarea><br>
+            <span class="text-danger">@error('biography') {{ $message }}@enderror</span><br>
         <input type="submit" class="fadeIn fourth" value="Sign up">
       </form>
-  
+
       <!-- Remind Passowrd -->
       <div id="formFooter">
         <a class="underlineHover" href="/authentication">You already have an account?</a><br>
       </div>
     </div>
   </div>
-  
+
 <style>
 
-    
+
     h2 {
     text-align: center;
     font-size: 16px;
     font-weight: 600;
     text-transform: uppercase;
     display:inline-block;
-    margin: 40px 8px 10px 8px; 
+    margin: 40px 8px 10px 8px;
     color: #cccccc;
     }
     /* STRUCTURE */
     .wrapper {
     display: flex;
     align-items: center;
-    flex-direction: column; 
+    flex-direction: column;
     justify-content: center;
     width: 100%;
     min-height: 100%;
@@ -244,7 +246,7 @@
     /* OTHERS */
     *:focus {
         outline: none;
-    } 
+    }
 
     #icon {
     width:60%;

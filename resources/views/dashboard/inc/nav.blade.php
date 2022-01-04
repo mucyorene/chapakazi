@@ -10,122 +10,12 @@
       </ul>
     </div>
     <ul class="navbar-nav navbar-right">
-      {{-- <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
-          class="nav-link nav-link-lg message-toggle"><i data-feather="mail"></i>
-          <span class="badge headerBadge1">
-            6 </span> </a>
-        <div class="dropdown-menu dropdown-list dropdown-menu-right pullDown">
-          <div class="dropdown-header">
-            Messages
-            <div class="float-right">
-              <a href="#">Mark All As Read</a>
-            </div>
-          </div>
-          <div class="dropdown-list-content dropdown-list-message">
-            <a href="#" class="dropdown-item"> <span class="dropdown-item-avatar
-                                        text-white"> <img alt="image" src="{{ asset('dashboard/assets/img/users/user-3.png')}}" class="rounded-circle">
-              </span> <span class="dropdown-item-desc"> <span class="message-user">John
-                  Deo</span>
-                <span class="time messege-text">Please check your mail !!</span>
-                <span class="time">2 Min Ago</span>
-              </span>
-            </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-avatar text-white">
-                <img alt="image" src="{{ asset('dashboard/assets/img/users/user-2.png')}}" class="rounded-circle">
-              </span> <span class="dropdown-item-desc"> <span class="message-user">Sarah
-                  Smith</span> <span class="time messege-text">Request for leave
-                  application</span>
-                <span class="time">5 Min Ago</span>
-              </span>
-            </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-avatar text-white">
-                <img alt="image" src="{{ asset('dashboard/assets/img/users/user-5.png') }}" class="rounded-circle">
-              </span> <span class="dropdown-item-desc"> <span class="message-user">Jacob
-                  Ryan</span> <span class="time messege-text">Your payment invoice is
-                  generated.</span> <span class="time">12 Min Ago</span>
-              </span>
-            </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-avatar text-white">
-                <img alt="image" src="{{ asset('dashboard/assets/img/users/user-4.png') }}" class="rounded-circle">
-              </span> <span class="dropdown-item-desc"> <span class="message-user">Lina
-                  Smith</span> <span class="time messege-text">hii John, I have upload
-                  doc
-                  related to task.</span> <span class="time">30
-                  Min Ago</span>
-              </span>
-            </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-avatar text-white">
-                <img alt="image" src="{{ asset('dashboard/assets/img/users/user-3.png') }}" class="rounded-circle">
-              </span> <span class="dropdown-item-desc"> <span class="message-user">Jalpa
-                  Joshi</span> <span class="time messege-text">Please do as specify.
-                  Let me
-                  know if you have any query.</span> <span class="time">1
-                  Days Ago</span>
-              </span>
-            </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-avatar text-white">
-                <img alt="image" src="{{ asset('dashboard/assets/img/users/user-2.png') }}" class="rounded-circle">
-              </span> <span class="dropdown-item-desc"> <span class="message-user">Sarah
-                  Smith</span> <span class="time messege-text">Client Requirements</span>
-                <span class="time">2 Days Ago</span>
-              </span>
-            </a>
-          </div>
-          <div class="dropdown-footer text-center">
-            <a href="#">View All <i class="fas fa-chevron-right"></i></a>
-          </div>
-        </div>
-      </li>
-      <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
-          class="nav-link notification-toggle nav-link-lg"><i data-feather="bell" class="bell"></i>
-        </a>
-        <div class="dropdown-menu dropdown-list dropdown-menu-right pullDown">
-          <div class="dropdown-header">
-            Notifications
-            <div class="float-right">
-              <a href="#">Mark All As Read</a>
-            </div>
-          </div>
-          <div class="dropdown-list-content dropdown-list-icons">
-            <a href="#" class="dropdown-item dropdown-item-unread"> <span
-                class="dropdown-item-icon bg-primary text-white"> <i class="fas
-                                            fa-code"></i>
-              </span> <span class="dropdown-item-desc"> Template update is
-                available now! <span class="time">2 Min
-                  Ago</span>
-              </span>
-            </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-icon bg-info text-white"> <i class="far
-                                            fa-user"></i>
-              </span> <span class="dropdown-item-desc"> <b>You</b> and <b>Dedik
-                  Sugiharto</b> are now friends <span class="time">10 Hours
-                  Ago</span>
-              </span>
-            </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-icon bg-success text-white"> <i
-                  class="fas
-                                            fa-check"></i>
-              </span> <span class="dropdown-item-desc"> <b>Kusnaedi</b> has
-                moved task <b>Fix bug header</b> to <b>Done</b> <span class="time">12
-                  Hours
-                  Ago</span>
-              </span>
-            </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-icon bg-danger text-white"> <i
-                  class="fas fa-exclamation-triangle"></i>
-              </span> <span class="dropdown-item-desc"> Low disk space. Let's
-                clean it! <span class="time">17 Hours Ago</span>
-              </span>
-            </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-icon bg-info text-white"> <i class="fas
-                                            fa-bell"></i>
-              </span> <span class="dropdown-item-desc"> Welcome to Chapakazi
-                template! <span class="time">Yesterday</span>
-              </span>
-            </a>
-          </div>
-          <div class="dropdown-footer text-center">
-            <a href="#">View All <i class="fas fa-chevron-right"></i></a>
-          </div>
-        </div>
-      </li> --}}
       <li class="dropdown"><a href="#" data-toggle="dropdown"
           class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="{{ asset('dashboard/assets/img/users/avatar.png') }}"
             class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
         <div class="dropdown-menu dropdown-menu-right pullDown">
           <div class="dropdown-title">{{Auth::guard('webadmins')->user()->names}}</div>
-          <a href="" class="dropdown-item has-icon"> <i class="far
+          <a href="/admin/profile" class="dropdown-item has-icon"> <i class="far
                                     fa-user"></i> Profile
           </a>
           {{-- <a href="timeline.html" class="dropdown-item has-icon"> <i class="fas fa-bolt"></i>
@@ -158,28 +48,13 @@
             data-feather="briefcase"></i><span>Employees</span></a>
         <ul class="dropdown-menu">
 
+          <li id="employeeAdmin20"><a class="nav-link" href="/dash/employeeRequested">Requested</a></li>
           <li id="employeeAdmin2"><a class="nav-link" href="/dash/allCasual">Recruited</a></li>
           <li id="employeeAdmin1"><a class="nav-link" id="recruites" href="/recruitedEmployee">All Employees</a></li>
-          
+
+
         </ul>
       </li>
-      {{-- <li class="dropdown">
-        <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="command"></i><span>Apps</span></a>
-        <ul class="dropdown-menu">
-          <li><a class="nav-link" href="chat.html">Chat</a></li>
-          <li><a class="nav-link" href="portfolio.html">Portfolio</a></li>
-          <li><a class="nav-link" href="blog.html">Blog</a></li>
-          <li><a class="nav-link" href="calendar.html">Calendar</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="mail"></i><span>Email</span></a>
-        <ul class="dropdown-menu">
-          <li><a class="nav-link" href="email-inbox.html">Inbox</a></li>
-          <li><a class="nav-link" href="email-compose.html">Compose</a></li>
-          <li><a class="nav-link" href="email-read.html">read</a></li>
-        </ul>
-      </li> --}}
       <li class="menu-header">Employers</li>
       <li class="dropdown" id="employers">
         <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="copy"></i><span>Employers</span></a>

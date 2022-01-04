@@ -132,7 +132,7 @@
             class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
         <div class="dropdown-menu dropdown-menu-right pullDown">
           <div class="dropdown-title">{{ Auth::guard('webemployers')->user()->fullNames }}</div>
-          <a href="/userProfiles/{{ Auth::guard('webemployers')->id() }}" class="dropdown-item has-icon"> <i class="far
+          <a href="/userProfiles" class="dropdown-item has-icon"> <i class="far
                                     fa-user"></i> Profile
           </a>
           {{-- <a href="timeline.html" class="dropdown-item has-icon"> <i class="fas fa-bolt"></i>

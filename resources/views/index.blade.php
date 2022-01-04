@@ -18,7 +18,7 @@
     position: relative;
     width: 0.4em;
     font-size: 1.1vw;
-    color: #FFD600;
+    color:#1BBD36;
     cursor: pointer;
   }
 

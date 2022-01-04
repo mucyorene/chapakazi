@@ -26,10 +26,10 @@
                         @csrf
                         <input type="hidden" name="employersId" value="{{ Auth::guard('webemployers')->id()}}">
                         <input type="hidden" name="employeeId" value="{{ $employee->id }}">
-                        <button type="submit" class="btn btn-success btn-sm btn-flat">Recruite</button>
+                        <button type="submit" style="background-color:#1BBD36;" class="btn btn-success btn-sm btn-flat">Recruite</button>
                     </form> 
                     @else
-                        <button id="recruitess" class="btn btn-info btn-sm btn-flat"><strong>Recruite</strong></button>
+                        <button id="recruitess" style="background-color:#1BBD36;" class="btn btn-sm btn-flat"><strong>Recruite</strong></button>
                     @endif
                     
                     {{-- <a href="casual/{{$employee->id}}" class="btn btn-success btn-sm btn-flat">Add to list</a> --}}

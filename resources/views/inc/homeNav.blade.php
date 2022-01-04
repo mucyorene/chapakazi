@@ -23,7 +23,7 @@
                     <li role="presentation"><a id="home" href="/">Home</a></li>
                     <li role="presentation"><a href="/eRecruite" id="recruite">Recruite</a></li>
                     <li role="presentation"><a href="/about" id="about">About Us</a></li>
-                    <li role="presentation"><a id="services" href="/services">Services</a></li>
+                    {{-- <li role="presentation"><a id="services" href="/services">Services</a></li> --}}
                     <li role="presentation"><a id="contact" href="/contact">Contact</a></li>  
                     @if (Auth::guard('webemployers')->id() > 0)
                         <li role="presentation"><a id="login" href="/savedList">My List<span style="color:red;">&nbsp {{HomeController::displayNumber()}}</span></a></li>

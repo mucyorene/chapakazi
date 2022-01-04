@@ -20,10 +20,11 @@ use App\Models\Ratings;
 use App\Models\RecruitedEmployee;
 use App\Models\recruiteList;
 use Illuminate\Support\Facades\Session as FacadesSession;
+use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
-    
+
     public function index(){
         // $employees = employees::where('status','=','0')->get();
         return view('index');
@@ -44,7 +45,7 @@ class HomeController extends Controller
     public function userRegister(){
         return view("pages.register");
     }
-    
+
     public function employeePage(){
         return view('pages/employeePage');
     }
@@ -58,17 +59,65 @@ class HomeController extends Controller
         return view('pages/view',compact('casual'));
     }
 
-    public function employerProfile($id){
-        $real = Employers::find($id);
+    public function employerProfile(){
+        $real = Auth::guard('webemployers')->user();
         return view('dashboard/pages/userProfile',compact('real'));
     }
 
     public function loadEmployees(){
         $employees = employees::where('status','=','0')->get();
-        
+
         return view('pages/load_employee',compact('employees'));
     }
 
+    public function updateUser(Request $request, $id){
+        $validator = Validator::make($request->all(),[
+            'names'=>'required|min:3|max:100',
+            'email'=>'required|email',
+            'phone'=>'required|min:10|max:10',
+            'username'=>'required|min:2|max:20',
+            'address'=>'required|min:3',
+            'biography'=>'required|min:10|max:500',
+        ]);
+
+        if (!$validator->passes()) {
+            return response()->json(['status'=>0, 'error'=>$validator->errors()->toArray()]);
+        }else{
+
+            if ($request->input('profile') == null) {
+                $employer = Employers::find($id);
+                $employer->fullNames = $request->input('names');
+                $employer->email = $request->input('email');
+                $employer->phone = $request->input('phone');
+                $employer->username = $request->input('username');
+                $employer->address = $request->input('address');
+                $employer->biography = $request->input('biography');
+                $employer->update();
+                return response()->json(['status'=>1, 'success'=>'Successfully updated']);
+            }else{
+
+                $image = $request->file('profile');
+                $new_name = rand().'.'.$image->getClientOriginalExtension();
+                $image->move(public_path('profiles'),$new_name);
+
+                $employer = Employers::find($id);
+                $employer->fullNames = $request->input('names');
+                $employer->email = $request->input('email');
+                $employer->phone = $request->input('phone');
+                $employer->username = $request->input('username');
+                $employer->address = $request->input('address');
+                $employer->biography = $request->input('biography');
+                $employer->profile = $request->input('profile');
+                $employer->update();
+                return response()->json(['status'=>1, 'success'=>'Successfully updated']);
+
+            }
+
+        }
+
+
+
+    }
 
     public static function rating($employeeId){
         $sum = 0;
@@ -79,12 +128,12 @@ class HomeController extends Controller
         if ($sum >0) {
             $avg = $sum/count($rate);
             return number_format($avg,1);
-        }      
+        }
 
     }
 
     public function indexSearch($key){
-        
+
         $employees = employees::query()->where(function($query) use ($key){
             $query->where('firstName','LIKE','%'.$key.'%')
             ->orwhere('lastName','LIKE','%'.$key.'%')
@@ -92,7 +141,7 @@ class HomeController extends Controller
         })
         ->whereDoesntHave("recruted")
         ->get();
-        
+
         return view('pages/load_search_results',compact('employees'));
 
         // foreach ($employees as $key => $value) {
@@ -121,7 +170,7 @@ class HomeController extends Controller
         //     return "Results not found";
         // }
         //return view('pages/load_search_results',compact('employees'));
-    
+
     }
 
     public function searchByCategory($category){
@@ -150,7 +199,7 @@ class HomeController extends Controller
         return response()->json('You already rated this employee');
     }
 
-    public function myCasuals(){      
+    public function myCasuals(){
 
         $data = Auth::guard('webemployers')->user()->recruitedEmployees()->with(['hiredEmployee'])->get();
 
@@ -172,7 +221,7 @@ class HomeController extends Controller
         $names = $updating->firstName." ".$updating->lastName;
         $employerName = Auth::guard('webemployers')->user()->fullNames;
 
-        $receiver="+250784494820";
+        $receiver=$updating->phone;
         $sender="+250788890071";
         $mssg="Hello ".$names." , ".$employerName." as your employer, decided to part away with you!";
 
@@ -228,7 +277,7 @@ class HomeController extends Controller
             'username'=>'required',
             'password'=>'required|min:3|max:20',
         ]);
-        
+
         $newAdmin = new Admins();
 
         $newAdmin->names  = $request->input("names");
@@ -257,8 +306,9 @@ class HomeController extends Controller
             'address'=>'required',
             'username'=>'required',
             'password'=>'required|min:3|max:20',
+            'biography'=>'required|min:10|max:255'
         ]);
-        
+
         $newEmployer = new ModelsEmployers();
         $newEmployer->fullNames = $request->input('names');
         $newEmployer->phone = $request->input('phone');
@@ -266,7 +316,7 @@ class HomeController extends Controller
         $newEmployer->address = $request->input('address');
         $newEmployer->username = $request->input('username');
         $newEmployer->profile = "avatar.png";
-        $newEmployer->biography = "My biography";
+        $newEmployer->biography = $request->input('biography');
         $newEmployer->password = Hash::make($request->input('password'));
 
 
@@ -320,13 +370,13 @@ class HomeController extends Controller
     //     if (!$adminInfo && !$employersInfo) {
     //         return back()->with('Fail','We do not recognize your username');
     //     }elseif($adminInfo){
-            
+
     //     }elseif($employersInfo){
 
     //     }else{
     //         return back()->with('fail', 'Incorrect username or password');
     //     }
-    
+
     // }
 
     public function handleLogin(Request $request){
@@ -334,7 +384,7 @@ class HomeController extends Controller
             'username'=>'required',
             'password'=>'required'
         ]);
-        
+
         if (Auth::guard('webadmins')->attempt($credentials)) {
 
             return redirect('/dash/admin');
@@ -360,26 +410,29 @@ class HomeController extends Controller
     }
 
     public function mySavedList(){
-       
-        $employersList = Auth::guard('webemployers')->user()->employees()->with(['employee'])->get();
-        
-        foreach ($employersList as $value) {
-            $unemployeed = RecruitedEmployee::where('employeeId','=',$value->employee->id)->count();
-            if ($unemployeed != null) {
-                
-                $employersList = [];
-                $totalNumber = 0;
-                 ///return count($employersList);
-                //$employersList = unset($employersList[$key]);
-               return view('pages.recruitingList',compact('employersList','totalNumber'));
-            }else{
-                $totalNumber = count($employersList);
-                return view('pages.recruitingList',compact('employersList','totalNumber'));
-            }
-            
-        }
 
-        
+        $employersList = Auth::guard('webemployers')->user()->employees()->with(['employee'])->get();
+
+        $totalNumber = count($employersList);
+        return view('pages.recruitingList',compact('employersList','totalNumber'));
+
+        // foreach ($employersList as $value) {
+        //     $unemployeed = RecruitedEmployee::where('employeeId','=',$value->employee->id)->count();
+        //     if ($unemployeed != null) {
+
+        //         $employersList = [];
+        //         $totalNumber = 0;
+        //          ///return count($employersList);
+        //         //$employersList = unset($employersList[$key]);
+        //        return view('pages.recruitingList',compact('employersList','totalNumber'));
+        //     }else{
+        //         $totalNumber = count($employersList);
+        //         return view('pages.recruitingList',compact('employersList','totalNumber'));
+        //     }
+
+        // }
+
+
         //return Auth::guard('webemployers')->user()->fullNames;
 
         //return view('pages.recruitingList',compact('employersList','totalNumber'));
@@ -392,9 +445,9 @@ class HomeController extends Controller
         // }else{
         //     return "No listed employees";
         // }
-               
+
     }
-    
+
     public static function displayNumber(){
         $employersList = Auth::guard('webemployers')->user()->employees()->with(['employee'])->get();
         foreach ($employersList as $value) {
@@ -430,7 +483,7 @@ class HomeController extends Controller
 
 
     public function employeeCart(Request $request){
-        
+
         $empId = $request->input('employersId');
         $casualId = $request->input('employeeId');
 
@@ -445,16 +498,16 @@ class HomeController extends Controller
         //return $check;
         if ($check == null) {
             $addCart->save();
-            return redirect('/eRecruite');   
+            return redirect('/eRecruite');
         }
 
         return redirect('/savedList');
-        
+
     }
 
     public function saveRecruited(){
         $employersList = Auth::guard('webemployers')->user()->employees()->with(['employee'])->get();
-              
+
         foreach ($employersList as $value) {
 
             //Moving from cart to hired employeee
@@ -462,10 +515,10 @@ class HomeController extends Controller
             $recruitedEmp = new RecruitedEmployee();
             $recruitedEmp->employerId = Auth::guard('webemployers')->id();
             $recruitedEmp->employeeId = $value->employee->id;
-            
+
             $recruitedEmp->save();
 
-            
+
             //Updating existing employee status
 
             $findEmployee = employees::find($value->employee->id);
@@ -486,18 +539,18 @@ class HomeController extends Controller
             $receiver=$phones;
                 $sender="+250788890071";
                 $mssg="Hello ".$names." You're hired by ".$employerNames.", call employer at: ".$employerPhones;
-        
+
                 $data=array(
                         "sender"=>$sender,
                         "recipients"=>$receiver,
                         "message"=>$mssg,
                     );
-        
+
                 $url="https://www.intouchsms.co.rw/api/sendsms/.json";
                 $data=http_build_query($data);
                 $username="renemucyo";
                 $password="mucyo12345";
-        
+
                 $ch=curl_init();
                 curl_setopt($ch,CURLOPT_URL,$url);
                 curl_setopt($ch,CURLOPT_USERPWD,$username.":".$password);
@@ -510,7 +563,7 @@ class HomeController extends Controller
                 curl_close($ch);
 
             $findEmployee->update();
-           
+
             if ($recruitedEmp && $findEmployee) {
                 $dele = Auth::guard('webemployers')->user()->employees();
                 $dele->delete();

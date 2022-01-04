@@ -100,10 +100,11 @@ Route::get('/sessionDestroyed',[HomeController::class, 'logout2'])->name('loggin
 
 // Employers Routes
 Route::get('/user/dash',[HomeController::class,'userDashView'])->middleware('auth:webemployers');
+Route::post('dash/user/update/{id}',[HomeController::class,'updateUser'])->middleware('auth:webemployers');
 Route::get('/employerOwns', [HomeController::class,'myCasuals'])->middleware('auth:webemployers');
 Route::get('/removeCasual/{id}',[HomeController::class, 'removeMyCasual'])->middleware('auth:webemployers');
 Route::get('/removeMyAllCasuals',[HomeController::class,'removeAllCasuals'])->middleware('auth:webemployers');
-Route::get('/userProfiles/{id}',[HomeController::class, 'employerProfile'])->middleware('auth:webemployers');
+Route::get('/userProfiles',[HomeController::class, 'employerProfile'])->middleware('auth:webemployers');
 
 
 //Admin Routes
@@ -126,6 +127,8 @@ Route::get('/removeEmployee/{id}',[MainController::class,'removeEmployee'])->nam
 Route::get('/recruitedEmployee',[MainController::class, 'recruitePage'])->middleware("auth:webadmins");
 Route::get('/emp/reg',[MainController::class, 'registerEmp'])->name("admin.addRegister")->middleware("auth:webadmins");
 Route::post('/postEmployee',[MainController::class, 'saveEmployee'])->name("admin.postEmployees")->middleware("auth:webadmins");
+Route::get('/admin/profile',[MainController::class, 'adminProfile'])->name("admin.addRegister")->middleware("auth:webadmins");
+Route::post('/admin/updateProfile/{id}',[MainController::class, 'updateProfile'])->name("admin.update")->middleware("auth:webadmins");
 
 
 
@@ -143,6 +146,8 @@ Route::get('/savedList',[HomeController::class, 'mySavedList'])->name('recruites
 // The route that the button calls to initialize payment
 Route::post('/pay', [HomeController::class, 'initialize'])->name('pay');
 
+Route::get('/dash/employeeRequested',[MainController::class,'requestedEmployees'])->name('auth:webadmins');
+Route::get('/dash/recruiteStatus/{id}',[MainController::class,'updateRequestStatus'])->name('auth:webadmins');
 // The callback url after a payment
 Route::get('/rave/callback', [HomeController::class, 'callback'])->name('callback');
 
