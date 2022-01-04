@@ -450,15 +450,15 @@ class HomeController extends Controller
 
     public static function displayNumber(){
         $employersList = Auth::guard('webemployers')->user()->employees()->with(['employee'])->get();
-        foreach ($employersList as $value) {
-            $unemployeed = RecruitedEmployee::where('employeeId','=',$value->employee->id)->count();
-            if ($unemployeed != null) {
-               return "";
-            }
-            else{
-                return count($employersList);
-            }
-        }
+        // foreach ($employersList as $value) {
+        //     $unemployeed = RecruitedEmployee::where('employeeId','=',$value->employee->id)->count();
+        //     if ($unemployeed == null) {
+        //         return count($employersList);
+        //     }
+        //     else{
+        //         return "";
+        //     }
+        // }
         return $totalNumber = count($employersList);
     }
 
@@ -516,9 +516,16 @@ class HomeController extends Controller
             $recruitedEmp->employerId = Auth::guard('webemployers')->id();
             $recruitedEmp->employeeId = $value->employee->id;
 
-            $recruitedEmp->save();
+            //Removing from ID
 
+            $removeCart = recruiteList::where('empId','=',$value->employee->id);
 
+            $removeCart->delete();
+            if ($removeCart) {
+                $recruitedEmp->save();
+            }else{
+                return "Can't delete from cart";
+            }
             //Updating existing employee status
 
             $findEmployee = employees::find($value->employee->id);

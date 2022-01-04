@@ -16,13 +16,13 @@
                           <td><strong>First name</strong></td>
                           <td><strong>Last Name</strong></td><td></td>
                       </tr>
-                          
+
                               @foreach ($employersList as $saved)
                                   <tr>
                                       <td>{{ $saved->employee->firstName }} &nbsp;</td>
                                       <td>{{ $saved->employee->lastName }}</td>
                                       <td><button id="removeCart" value="{{ $saved->employee->id }}"  class="btn btn-sm btn-danger btn-flat" style="float: right;">-</button></td>
-                                  </tr>                            
+                                  </tr>
                               @endforeach
                       <tr>
                           <td><strong>Total: </strong></td>
@@ -46,7 +46,7 @@
     <div class="row">
         <div class="col-md-10"></div>
         <div class="col-md-2">
-            
+
         </div>
     </div>
   </div>
@@ -55,7 +55,7 @@
   <script src="{{ asset('js/jquery.js') }}"></script>
   <script>
       $(function(){
-          
+
         $("#savingData").click(function(e){
             e.preventDefault();
         })
@@ -76,7 +76,7 @@
         $.ajax({
           url: "/listRemoving/"+employerIds+"/"+employeeIds,
           success:function(success){
-            
+
             $("#removedFromList").text(success)
             $("#removedFromList").addClass('alert alert-danger')
             $("#mydiv").load(location.href + " #refresh");

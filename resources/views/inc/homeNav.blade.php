@@ -24,14 +24,14 @@
                     <li role="presentation"><a href="/eRecruite" id="recruite">Recruite</a></li>
                     <li role="presentation"><a href="/about" id="about">About Us</a></li>
                     {{-- <li role="presentation"><a id="services" href="/services">Services</a></li> --}}
-                    <li role="presentation"><a id="contact" href="/contact">Contact</a></li>  
+                    <li role="presentation"><a id="contact" href="/contact">Contact</a></li>
                     @if (Auth::guard('webemployers')->id() > 0)
                         <li role="presentation"><a id="login" href="/savedList">My List<span style="color:red;">&nbsp {{HomeController::displayNumber()}}</span></a></li>
                         <li role="presentation"><a id="login" href="/user/dash">Your dashboard</a></li>
                     @else
                         <li role="presentation"><a id="login" href="/authentication">Login</a></li>
-                    @endif              
-                    
+                    @endif
+
                     {{-- <li role="presentation"><a href="{{ route('recruites') }}">List &nbsp;<span class="text-danger">{{ session()->has('empList') ? session()->get('empList')->totalEmployee : ''}}</span></a></li> --}}
                 </ul>
             </div>
@@ -51,7 +51,7 @@
         </div>
         <div class="modal-body">
             <div class="row">
-                
+
             </div>
         </div>
         <div class="modal-footer">

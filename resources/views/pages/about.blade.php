@@ -14,7 +14,7 @@
     <h3>Chapakazi Information</h3>
     <hr>
     <div class="col-md-7 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
-        <img src="images/7.jpg" class="img-responsive">
+        <img src="images/imageAbout.jpg" class="img-responsive">
         <h4>Bringing the best casuals to the right employers!</h4>
         <p>Nam tempor velit sed turpis imperdiet vestibulum. In mattis leo ut sapien euismod id feugiat mauris euismod. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus id nulla risus, vel tincidunt
         turpis. Aliquam a nulla mi, placerat blandit eros. </p>
@@ -23,10 +23,10 @@
     <div class="col-md-5 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
         <div class="skill">
         <h2>Our Skills</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p>Based on previous experience, we've got experiences including the following: </p>
 
         <div class="progress-wrap">
-            <h3>Selecting best casuals</h3>
+            <h3>Communication skills</h3>
             <div class="progress">
             <div class="progress-bar  color1" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 91%">
                 <span class="bar-width">91%</span>
@@ -36,7 +36,7 @@
         </div>
 
         <div class="progress-wrap">
-            <h4>Communication</h4>
+            <h4>Customer care</h4>
             <div class="progress">
             <div class="progress-bar color2" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 97%">
                 <span class="bar-width">97%</span>
@@ -53,12 +53,12 @@
     <h3>Our Team</h3>
     <div class="text-center">
         <div class="col-md-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
-        <img src="images/services/1.jpg" alt="" class="img" width="200">
+        <img src="images/services/brendah.jpeg" alt="" class="img" width="200">
         <h4>Brendah UMUTONIWASE</h4>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing eil sed deiusmod tempor</p>
         </div>
         <div class="col-md-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
-        <img src="images/services/2.jpg" alt="" class="img" width="200">
+        <img src="images/services/paul.jpg" alt="" class="img" width="200">
         <h4>Paul RWIGEMA</h4>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing eil sed deiusmod tempor</p>
         </div>
