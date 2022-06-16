@@ -50,6 +50,14 @@ return [
             'driver' => 'session',
             'provider' => 'employers',
         ],
+        'psychologyAuth' => [
+            'driver' => 'session',
+            'provider' => 'Psychology',
+        ],
+        'superAdminAuth' => [
+            'driver' => 'session',
+            'provider' => 'SuperAdmin',
+        ],
     ],
 
     /*
@@ -83,6 +91,16 @@ return [
         'employers' => [
             'driver' => 'eloquent',
             'model' => App\Models\Employers::class,
+        ],
+
+        'Psychology' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\apiModel\Psychologist::class,
+        ],
+
+        'SuperAdmin' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\apiModel\SuperAdmin::class,
         ],
     ],
 

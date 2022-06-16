@@ -32,6 +32,18 @@ class HomeController extends Controller
     public function about(){
         return view('pages/about');
     }
+    public function contactUs(Request $request){
+        $request->validate([
+            'names'=>'required|min:4|max:100',
+            'email'=>'required|email',
+            'subject'=>'required|min:4',
+            'message'=>'required|min:30',
+        ]);
+
+        $contactUs = new Contact();
+        $contactUs->name = $request->input('names');
+        $contactUs->name = $request->input('names');
+    }
     public function services(){
         return view('pages/services');
     }
@@ -325,31 +337,31 @@ class HomeController extends Controller
 
         $newEmployer->save();
 
-        // $receiver=$phones;
-        // $sender="+250788890071";
-        // $mssg="Hello ".$names."You are welcome, Thanks for signing up at CHAPAKAZI, Better casuals, are waiting for you!";
+        $receiver=$phones;
+        $sender="+250788890071";
+        $mssg="Hello ".$names."You are welcome, Thanks for signing up at CHAPAKAZI, Better casuals, are waiting for you!";
 
-        // $data=array(
-        //         "sender"=>$sender,
-        //         "recipients"=>$receiver,
-        //         "message"=>$mssg,
-        //     );
+        $data=array(
+                "sender"=>$sender,
+                "recipients"=>$receiver,
+                "message"=>$mssg,
+            );
 
-        // $url="https://www.intouchsms.co.rw/api/sendsms/.json";
-        // $data=http_build_query($data);
-        // $username="renemucyo";
-        // $password="mucyo12345";
+        $url="https://www.intouchsms.co.rw/api/sendsms/.json";
+        $data=http_build_query($data);
+        $username="renemucyo";
+        $password="mucyo12345";
 
-        // $ch=curl_init();
-        // curl_setopt($ch,CURLOPT_URL,$url);
-        // curl_setopt($ch,CURLOPT_USERPWD,$username.":".$password);
-        // curl_setopt($ch,CURLOPT_POST,true);
-        // curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-        // curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,0);
-        // curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
-        // $result=curl_exec($ch);
-        // $httpcode=curl_getinfo($ch,CURLINFO_HTTP_CODE);
-        // curl_close($ch);
+        $ch=curl_init();
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch,CURLOPT_USERPWD,$username.":".$password);
+        curl_setopt($ch,CURLOPT_POST,true);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,0);
+        curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
+        $result=curl_exec($ch);
+        $httpcode=curl_getinfo($ch,CURLINFO_HTTP_CODE);
+        curl_close($ch);
 
         if ($newEmployer) {
            return redirect('/authentication');
@@ -543,31 +555,31 @@ class HomeController extends Controller
 
             //Calling SMS function
 
-            // $receiver=$phones;
-            //     $sender="+250788890071";
-            //     $mssg="Hello ".$names." You're hired by ".$employerNames.", call employer at: ".$employerPhones;
+            $receiver=$phones;
+                $sender="+250788890071";
+                $mssg="Hello ".$names." You're hired by ".$employerNames.", call employer at: ".$employerPhones;
 
-            //     $data=array(
-            //             "sender"=>$sender,
-            //             "recipients"=>$receiver,
-            //             "message"=>$mssg,
-            //         );
+                $data=array(
+                        "sender"=>$sender,
+                        "recipients"=>$receiver,
+                        "message"=>$mssg,
+                    );
 
-            //     $url="https://www.intouchsms.co.rw/api/sendsms/.json";
-            //     $data=http_build_query($data);
-            //     $username="renemucyo";
-            //     $password="mucyo12345";
+                $url="https://www.intouchsms.co.rw/api/sendsms/.json";
+                $data=http_build_query($data);
+                $username="renemucyo";
+                $password="mucyo12345";
 
-            //     $ch=curl_init();
-            //     curl_setopt($ch,CURLOPT_URL,$url);
-            //     curl_setopt($ch,CURLOPT_USERPWD,$username.":".$password);
-            //     curl_setopt($ch,CURLOPT_POST,true);
-            //     curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-            //     curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,0);
-            //     curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
-            //     $result=curl_exec($ch);
-            //     $httpcode=curl_getinfo($ch,CURLINFO_HTTP_CODE);
-            //     curl_close($ch);
+                $ch=curl_init();
+                curl_setopt($ch,CURLOPT_URL,$url);
+                curl_setopt($ch,CURLOPT_USERPWD,$username.":".$password);
+                curl_setopt($ch,CURLOPT_POST,true);
+                curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+                curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,0);
+                curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
+                $result=curl_exec($ch);
+                $httpcode=curl_getinfo($ch,CURLINFO_HTTP_CODE);
+                curl_close($ch);
 
             $findEmployee->update();
 

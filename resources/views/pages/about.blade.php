@@ -15,11 +15,8 @@
     <hr>
     <div class="col-md-7 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
         <img src="images/imageAbout.jpg" class="img-responsive">
-        <h4>Bringing the best casuals to the right employers!</h4>
-        <p>Nam tempor velit sed turpis imperdiet vestibulum. In mattis leo ut sapien euismod id feugiat mauris euismod. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus id nulla risus, vel tincidunt
-        turpis. Aliquam a nulla mi, placerat blandit eros. </p>
-        <p>In neque lectus, lobortis a varius a, hendrerit eget dolor. Fusce scelerisque, sem ut viverra sollicitudin, est turpis blandit lacus, in pretium lectus sapien at est. Integer pretium ipsum sit amet dui feugiat vitae dapibus odio eleifend.</p>
-    </div>
+        <h4>Bringing the best casual workers to the right employers!</h4>
+        </div>
     <div class="col-md-5 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
         <div class="skill">
         <h2>Our Skills</h2>
@@ -55,17 +52,17 @@
         <div class="col-md-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
         <img src="images/services/brendah.jpeg" alt="" class="img" width="200">
         <h4>Brendah UMUTONIWASE</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing eil sed deiusmod tempor</p>
+        <p>System Administrator & communication specialist</p>
         </div>
         <div class="col-md-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
         <img src="images/services/paul.jpg" alt="" class="img" width="200">
         <h4>Paul RWIGEMA</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing eil sed deiusmod tempor</p>
+        <p>System Administrator</p>
         </div>
         <div class="col-md-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="900ms">
         <img src="images/services/3.jpg" alt="" class="img" width="200">
         <h4>Rene MUCYO</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing eil sed deiusmod tempor</p>
+        <p>System Administrator</p>
         </div>
     </div>
     </div>

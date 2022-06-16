@@ -48,7 +48,7 @@
             data-feather="briefcase"></i><span>Employees</span></a>
         <ul class="dropdown-menu">
 
-          <li id="employeeAdmin20"><a class="nav-link" href="/dash/employeeRequested">Requested</a></li>
+          {{-- <li id="employeeAdmin20"><a class="nav-link" href="/dash/employeeRequested">Requested</a></li> --}}
           <li id="employeeAdmin2"><a class="nav-link" href="/dash/allCasual">Recruited</a></li>
           <li id="employeeAdmin1"><a class="nav-link" id="recruites" href="/recruitedEmployee">All Employees</a></li>
 

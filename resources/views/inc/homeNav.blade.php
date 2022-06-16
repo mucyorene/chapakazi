@@ -21,7 +21,7 @@
             <div class="menu">
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation"><a id="home" href="/">Home</a></li>
-                    <li role="presentation"><a href="/eRecruite" id="recruite">Recruite</a></li>
+                    <li role="presentation"><a href="/eRecruite" id="recruite">Recruit</a></li>
                     <li role="presentation"><a href="/about" id="about">About Us</a></li>
                     {{-- <li role="presentation"><a id="services" href="/services">Services</a></li> --}}
                     <li role="presentation"><a id="contact" href="/contact">Contact</a></li>

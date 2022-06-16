@@ -125,6 +125,9 @@ Route::get('/removeMyAllEmployers',[HomeController::class,'deleteAllEmployers'])
 
 Route::get('/removeEmployee/{id}',[MainController::class,'removeEmployee'])->name("deleteEmployee.id")->middleware('auth:webadmins');
 Route::get('/recruitedEmployee',[MainController::class, 'recruitePage'])->middleware("auth:webadmins");
+Route::get('/updateEmployee/{id}',[MainController::class, 'updateEmployees'])->middleware("auth:webadmins");
+Route::post('/postContact',[HomeController::class, 'contactUs'])->name('home.index');
+
 Route::get('/emp/reg',[MainController::class, 'registerEmp'])->name("admin.addRegister")->middleware("auth:webadmins");
 Route::post('/postEmployee',[MainController::class, 'saveEmployee'])->name("admin.postEmployees")->middleware("auth:webadmins");
 Route::get('/admin/profile',[MainController::class, 'adminProfile'])->name("admin.addRegister")->middleware("auth:webadmins");

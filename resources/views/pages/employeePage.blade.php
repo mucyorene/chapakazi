@@ -45,68 +45,71 @@
   <!--/#main-slider-->
 <br><br><br>
   <section id="team" class="team">
+
     <div class="container">
 
       <div class="section-title">
         <h2>Available for recruitment</h2>
         <p>Find your suitable employee</p>
       </div>
-      <div class="row gy-4">
+
+      <div class="row">
           <div class="col-md-12 col-lg-">
-
               <form class="form">
-              <input type="text" name="" placeholder="Type the name or category, !" class="form-control text-center" id="searching">
-              <div class="row">
-                <div class="col-12">
-                  <div class="form-group">
-                      <div class="selectgroup selectgroup-pills">
-                          <label class="selectgroup-item">
-                            <input type="radio" name="category" value="All" class="selectgroup-input" checked>
-                            <span class="selectgroup-button">All</span>
-                          </label>
-
-                          <label class="selectgroup-item">
-                          <input type="radio" name="category" value="Plumber" class="selectgroup-input">
-                          <span class="selectgroup-button">Plumber</span>
-                          </label>
-                          <label class="selectgroup-item">
-                          <input type="radio" name="category" value="Electricians" class="selectgroup-input">
-                          <span class="selectgroup-button">Electricians</span>
-                          </label>
-                          <label class="selectgroup-item">
-                          <input type="radio" name="category" value="Mechanics" class="selectgroup-input">
-                          <span class="selectgroup-button">Mechanics</span>
-                          </label>
-                          <label class="selectgroup-item">
-                          <input type="radio" name="category" value="HouseMaid" class="selectgroup-input">
-                          <span class="selectgroup-button">House Maid</span>
-                          </label>
-                          <label class="selectgroup-item">
-                          <input type="radio" name="category" value="BabySeaters" class="selectgroup-input">
-                          <span class="selectgroup-button">Baby Seaters</span>
-                          </label>
-                          <label class="selectgroup-item">
-                          <input type="radio" name="category" value="Cleaners" class="selectgroup-input">
-                          <span class="selectgroup-button">Cleaners</span>
-                          </label>
-                          <label class="selectgroup-item">
-                          <input type="radio" name="category" value="Gatekeepers" class="selectgroup-input">
-                          <span class="selectgroup-button">Gate keepers</span>
-                          </label>
-                          <label class="selectgroup-item">
-                            <input type="radio" name="category" value="Gardeners" class="selectgroup-input">
-                            <span class="selectgroup-button">Gardeners</span>
+                <input type="text" name="" placeholder="Type the name or category, !" class="form-control text-center" id="searching">
+                <div class="row">
+                    <div class="col-12">
+                    <div class="form-group">
+                        <div class="selectgroup selectgroup-pills">
+                            <label class="selectgroup-item">
+                                <input type="radio" name="category" value="All" class="selectgroup-input" checked>
+                                <span class="selectgroup-button">All</span>
                             </label>
-                      </div>
-                  </div>
+
+                            <label class="selectgroup-item">
+                            <input type="radio" name="category" value="Plumber" class="selectgroup-input">
+                            <span class="selectgroup-button">Plumber</span>
+                            </label>
+                            <label class="selectgroup-item">
+                            <input type="radio" name="category" value="Electricians" class="selectgroup-input">
+                            <span class="selectgroup-button">Electricians</span>
+                            </label>
+                            <label class="selectgroup-item">
+                            <input type="radio" name="category" value="Mechanics" class="selectgroup-input">
+                            <span class="selectgroup-button">Mechanics</span>
+                            </label>
+                            <label class="selectgroup-item">
+                            <input type="radio" name="category" value="HouseMaid" class="selectgroup-input">
+                            <span class="selectgroup-button">House Maid</span>
+                            </label>
+                            <label class="selectgroup-item">
+                            <input type="radio" name="category" value="BabySeaters" class="selectgroup-input">
+                            <span class="selectgroup-button">Baby Seaters</span>
+                            </label>
+                            <label class="selectgroup-item">
+                            <input type="radio" name="category" value="Cleaners" class="selectgroup-input">
+                            <span class="selectgroup-button">Cleaners</span>
+                            </label>
+                            <label class="selectgroup-item">
+                            <input type="radio" name="category" value="Gatekeepers" class="selectgroup-input">
+                            <span class="selectgroup-button">Gate keepers</span>
+                            </label>
+                            <label class="selectgroup-item">
+                                <input type="radio" name="category" value="Gardeners" class="selectgroup-input">
+                                <span class="selectgroup-button">Gardeners</span>
+                                </label>
+                        </div>
+                    </div>
+                    </div>
                 </div>
-              </div>
               </form>
           </div>
-          
-          <div id="loadEmployees"></div>
       </div>
-      
+      <div class="row">
+        <div id="loadEmployees"></div>
+      </div>&nbsp;
+      {{-- <div id="loadEmployees"></div> --}}
+
       <script>
         $(document).ready(function(){
           $("#searching").keyup(function(){
@@ -119,9 +122,9 @@
           })
         });
       </script>
+    </div>
 
-
-    </div><br>
+    <br>
   </section>
 @endsection
 
@@ -145,8 +148,8 @@
         }else if (empCategory != '') {
           $("#loadEmployees").load('/chapa/search/category/'+empCategory);
         }else{
-          
-        }     
+
+        }
 
       })
     });

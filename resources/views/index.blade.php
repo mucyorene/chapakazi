@@ -68,7 +68,7 @@
             </div>
           </div>
         </div>
-        
+
       </div>
     </div>
     <!--/.carousel-->
@@ -85,7 +85,6 @@
       $("#home").addClass('active');
     });
   </script>
-
   <script>
     $(function(){
       $("[name=category]").change(function(){
@@ -96,8 +95,8 @@
         }else if (empCategory != '') {
           $("#loadEmployees").load('/chapa/search/category/'+empCategory);
         }else{
-          
-        }     
+
+        }
 
       })
     });

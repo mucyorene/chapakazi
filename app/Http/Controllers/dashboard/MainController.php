@@ -37,6 +37,12 @@ class MainController extends Controller
               ->update(['status' => 'confirmed']);
         return response()->json(['status'=>'Updated successfully']);
     }
+
+    public function updateEmployees($id){
+        //return $id;
+        return view('dashboard/pages/updateEmployeePage',$id);
+    }
+
     public function updateProfile(Request $request, $id){
         $validator = Validator::make($request->all(),[
             'names'=>'required|max:50|min:3',
@@ -74,9 +80,6 @@ class MainController extends Controller
 
                 return response()->json(['status'=>1, 'success'=>'Your profile updated successfully']);
             }
-
-
-
         }
 
 

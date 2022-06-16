@@ -8,76 +8,7 @@
     <div class="section-body">
       <div class="row">
         <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <div class="col-md-10">
-                    <h4>Employee</h4>
-              </div>
-              <div class="col-md-2">
-                <button id="registerEmployee" class="btn btn-info btn-sm btn-flat" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add New</button>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-
-                @if (session('danger'))
-                    <div class="alert alert-danger">
-                      {{session('danger')}}
-                    </div>
-                @endif
-
-                <table class="table table-striped table-hover" id="tableExport">
-                  <thead>
-                    <tr>
-                      <th>Names</th>
-                      <th>IDNumber</th>
-                      <th>Category</th>
-                      <th>Availability</th>
-                      <th>Rate Per Day</th>
-                      <th>Experience</th>
-                      <th>Status</th>
-                      <th>Profile</th>
-                      <th>Gender</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @foreach ($data as $employee)
-                    <tr>
-                      <td>{{ $employee->firstName }} {{$employee->lastName}}</td>
-                      <td>{{ $employee->identificationNumber }}</td>
-                      <td>{{ $employee->category }}</td>
-                      <td>{{ $employee->availability }}</td>
-                      <td>{{ $employee->ratePerDay }}</td>
-                      <td>{{ $employee->Experience }}</td>
-                      <td>{{ $employee->status }}</td>
-                      <td class="avatar avatar mr-2 avatar-xl bg-white">
-                          <img class="img img-fluid" src="profiles/{{$employee->profile}}" alt="No profile">
-                          <i class="avatar-presence online"></i>
-                      </td>
-                      <td>{{ $employee->email }}</td>
-                      <td>
-
-                        <div class="dropdown d-inline">
-                          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Choose
-                          </button>
-                          <div class="dropdown-menu">
-                            {{-- <a class="dropdown-item has-icon" href="#"><i class="fas fa-th"></i>View</a> --}}
-                            {{-- <a class="dropdown-item has-icon text-success" href="/updateEmployee/{{ $employee->id }}"><i class="far fa-edit"></i>Edit</a> --}}
-                            <a class="dropdown-item has-icon text-danger" onclick="deleteEmployee('{{ $employee->id }}','{{ $employee->firstName }}','{{$employee->lastName}}')" id="delEmployee" href="#"><i class="fas fa-trash"></i> Delete</a>
-                          </div>
-                        </div>
-
-                      </td>
-                    </tr>
-                    @endforeach
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+          Rwanda
         </div>
       </div>
     </div>

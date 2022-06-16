@@ -20,35 +20,35 @@
         </span><br>
         <input type="submit" class="fadeIn fourth" value="Log In">
       </form>
-  
+
       <!-- Remind Passowrd -->
       <div id="formFooter">
         <a class="underlineHover" href="/registeration">Don't you have an account?</a><br>
-        <a class="underlineHover" href="#">Forgot Password?</a>
+        {{-- <a class="underlineHover" href="#">Forgot Password?</a> --}}
       </div>
     </div>
   </div>
 
   <br><br><br>
   <br><br>
-  
+
 <style>
 
-    
+
     h2 {
     text-align: center;
     font-size: 16px;
     font-weight: 600;
     text-transform: uppercase;
     display:inline-block;
-    margin: 40px 8px 10px 8px; 
+    margin: 40px 8px 10px 8px;
     color: #cccccc;
     }
     /* STRUCTURE */
     .wrapper {
     display: flex;
     align-items: center;
-    flex-direction: column; 
+    flex-direction: column;
     justify-content: center;
     width: 100%;
     min-height: 100%;
@@ -244,7 +244,7 @@
     /* OTHERS */
     *:focus {
         outline: none;
-    } 
+    }
 
     #icon {
     width:60%;

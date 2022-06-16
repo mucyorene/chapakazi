@@ -251,7 +251,7 @@
                           <th>Status</th>
                           <th>Profile</th>
                           <th>Email</th>
-                          <th>Action</th>
+                          {{-- <th>Action</th> --}}
                         </tr>
                       </thead>
                       <tbody>
@@ -269,7 +269,7 @@
                               <i class="avatar-presence online"></i>
                           </td>
                           <td>{{ $employee->email }}</td>
-                          <td>
+                          {{-- <td>
 
                             <div class="dropdown d-inline">
                               <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2"
@@ -283,7 +283,7 @@
                               </div>
                             </div>
 
-                          </td>
+                          </td> --}}
                         </tr>
                         @endforeach
                       </tbody>

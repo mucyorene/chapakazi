@@ -47,15 +47,14 @@
 
       <div class="section-title">
         <h2>Read the details about {{ $casual->firstName}} {{ $casual->lastName}}</h2>
-        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-      </div>
+       </div>
       <br>
       <div class="row gy-4">
         <div class="col-lg-4"></div>
         <div class="col-lg-4 col-md-4">
             <div class="member">
                 <img src="{{ asset('profiles/'.$casual->profile)}}" alt="No Image found">
-                
+
                 @if (Auth::guard('webemployers')->id() > 0)
 
                     {{-- Rating system --}}
@@ -87,8 +86,8 @@
 
                 @else
                     {{-- Rating system --}}
-                  
-                    viewCasual{{-- Rating system --}} 
+
+                    viewCasual{{-- Rating system --}}
 
                     <div class="rating"> <strong class="text-warning">{{ App\Http\Controllers\web\HomeController::rating($casual->id) }}</strong>&nbsp;<input type="radio"  name="rating" value="5" id="5"><label for="5"> ☆ </label> </div>
 
@@ -119,7 +118,7 @@
                         </table>
                     </div>
                 </div>
-                
+
                 <div class="social">
                     <div class="row">
                         <div class="col-3"></div>
@@ -130,20 +129,28 @@
                                 <input type="hidden" name="employersId" value="{{ Auth::guard('webemployers')->id()}}">
                                 <input type="hidden" name="employeeId" value="{{ $casual->id }}">
                                 <button type="submit" class="btn btn-success btn-sm btn-flat">Recruite</button>
-                            </form> 
+                            </form>
                             @else
-                                <button href="/authentication" id="recruite" class="btn btn-info btn-sm btn-flat"><strong>Recruite</strong></button>
+                                <button href="{{ route('loginAgain') }}" id="recruiteAgain" class="btn btn-info btn-sm btn-flat"><strong>Recruite</strong></button>
                             @endif
-                            
+
+                            <script>
+                                $(function(){
+                                    //alert("Jquery yes")
+                                    $("#recruiteAgain").click(function(){
+                                        window.top.location = "/authentication";
+                                    });
+                                })
+                            </script>
                             {{-- <a href="casual/{{$employee->id}}" class="btn btn-success btn-sm btn-flat">Add to list</a> --}}
                         </div>
-                        <div class="col-3"></div>                    
+                        <div class="col-3"></div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-lg-4"></div>
-      </div> 
+      </div>
     </div><br>
   </section>
 
